@@ -1,27 +1,110 @@
 -- =================================================================
 -- FFXIMissingSpells trust info  (auto-generated from BG-Wiki)
 --
--- Source priority: BG-Wiki is canonical (per user directive).
---   1. Cipher:_<Name>                    (newer trusts)
---   2. Cipher_of_<Name>%27s_alter_ego    (older lowercase)
---   3. Cipher_Of_<Name>%27s_Alter_Ego    (older title-case)
+-- Source: BG-Wiki master page https://www.bg-wiki.com/ffxi/BGWiki:Trusts
+-- This single page has per-trust infobox tables for all 122 trusts.
+-- Each addon-side trust name maps to either the page anchor id or the
+-- visible label; ADDON_TO_WIKI in the scraper handles the few that
+-- differ ("AAEV" -> "Ark Angel EV" etc.).
 --
--- Trusts whose entry is an empty table {} are catalogued in BG-Wiki's
--- master BGWiki:Trusts navigation but do not have their own
--- structured Cipher: page. Their detailed Job/Spells/Abilities/
--- Weapon Skills/Acquisition/Special Features info is not present
--- on BG-Wiki. Per user directive, alternate sources should not
--- override BG -- so these entries stay empty until BG fills them
--- in or the user hand-curates them.
---
--- Regenerate by re-running:  cipher-scrape/v3_fetch.sh
+-- Regenerate by re-running:  cipher-fill/extract_master.py
 -- =================================================================
 return {
-    ['AAEV'] = {},   -- no BG-Wiki Cipher page found
-    ['AAGK'] = {},   -- no BG-Wiki Cipher page found
-    ['AAHM'] = {},   -- no BG-Wiki Cipher page found
-    ['AAMR'] = {},   -- no BG-Wiki Cipher page found
-    ['AATT'] = {},   -- no BG-Wiki Cipher page found
+    ['AAEV'] = {
+        job           = 'Paladin / White Mage',
+        spells        = 'Flash , Phalanx , Cure I - IV , Enlight , Reprisal',
+        abilities     = 'Chivalry , Palisade , Sentinel , Divine Emblem , Rampart , Shield Strike',
+        weapon_skills = 'Chant du Cygne / , Vorpal Blade / , Dominion Slash (AoE) , Arrogance Incarnate (AoE Spirits Within )',
+        acquisition   = {
+          'Trade the Cipher: Ark EV item to one of the beginning Trust quest NPCs, which may be acquired via: Complete Dawn and all its cutscenes. Be in possession of the Bundle of scrolls key item. Have obtained the additional following Trust spells: Rainemard , & Ark Angel GK Speak with Jamal in Ru\'Lude Gardens (H-5). After trading Ark Angel GK \'s cipher, you must speak to Jamal , zone, and speak to Jamal again to unlock the Objective for Cipher: Ark EV . Be sure before zoning Jamal asks you to "Please come by again later." Complete the Records of Eminence Objective : Temper Your Arrogance',
+        },
+        special       = {
+          'Possesses Fast Cast , Cure Potency Bonus +50%, Damage Taken -10%, HP+20%, MP+50%, Converts 5% of Damage Taken to MP.',
+          'Lacks Provoke ; however, AAEV\'s additional Fast Cast trait reduces the recast time on Flash and Reprisal for solid enmity control. Recast times can be improved further by providing Haste .',
+          'AAEV has improved Shield stats compared to other trusts, implied by the [ Nov 2021 Patch Notes ]. This would also make her Reprisal better.',
+          'Ark Angel Elvaan doesn\'t use any WHM-only abilities or spells, but /WHM has Auto-Regen and Magic Defense Bonus , making her a good physical/magical hybrid tank.',
+          'Uses Rampart when her target is under the effects of Chainspell , Manafont , or Astral Flow .',
+          'Uses Shield Strike to interrupt enemies casting high tier spells.',
+          'Holds up to 2000 TP to try to close skillchains.',
+          'With two weapon skills that have no skillchain properties, tends to not interrupt skillchains performed by other party members.',
+        },
+    },
+    ['AAGK'] = {
+        job           = 'Samurai / Dragoon',
+        abilities     = 'Hasso , Konzen-ittai , Hagakure , Meditate , Sekkanoki , Jump , High Jump',
+        weapon_skills = 'Tachi: Fudo / , Tachi: Gekko / , Tachi: Kasha / , Tachi: Yukikaze / , Dragonfall (AoE Damage + Bind )',
+        acquisition   = {
+          'Trade the Cipher: Ark GK item to one of the beginning Trust quest NPCs, which may be acquired via: Complete Dawn and all its cutscenes. Complete Awakening and all its cutscenes. Be in possession of the Bundle of scrolls key item. Have obtained the additional following Trust spells: Rainemard Speak with Jamal in Ru\'Lude Gardens (H-5). Complete the Records of Eminence Objective : Quell Your Rage',
+        },
+        special       = {
+          'Possesses HP+20%',
+          'Occassionally able to use Weapon Skills without consuming TP. Can do this to close Skillchains under 1000 TP or to use Dragonfall twice at high TP. There is a short delay before he can use it again.',
+          'Has a high TP return on Jump (790 TP), uses it at low TP.',
+          'Uses High Jump when in the top enmity slot.',
+          'He will use Konzen-ittai if available when the player has 1000 TP but he does not. Never tries to close a Skillchain with it.',
+          'Holds up to 3000 TP to try to close skillchains.',
+          'If Sekkanoki and Meditate are available, self-skillchains at 2000 TP.',
+        },
+    },
+    ['AAHM'] = {
+        job           = 'Ninja / Warrior',
+        spells        = 'Migawari: Ichi , Utsusemi: Ichi / Ni , Hojo: Ichi / Ni , Kurayami: Ichi / Ni',
+        abilities     = 'Innin , Yonin , Provoke , Berserk , Warcry',
+        weapon_skills = 'Chant du Cygne / , Swift Blade , Cross Reaver (Unique Conal Stun )',
+        acquisition   = {
+          'Trade the Cipher: Ark HM item to one of the beginning Trust quest NPCs, which may be acquired via: Complete Dawn and all its cutscenes. Be in possession of the Bundle of scrolls key item. Have obtained the additional following Trust spells: Rainemard , Ark Angel GK , Ark Angel EV , Ark Angel MR , & Ark Angel TT Speak with Jamal in Ru\'Lude Gardens (H-5). After trading Ark Angel TT \'s cipher, you must speak to Jamal , zone, and speak to Jamal again to unlock the Objective for Cipher: Ark HM . Be sure before zoning Jamal asks you to "Please come by again later." You may need to zone and talk to him again if you haven\'t talked to him since trading Ark Angel TT \'s cipher in order for him to unlock the Objective. Complete the Records of Eminence Objective : Eliminate Your Apathy',
+        },
+        special       = {
+          'Possesses HP+20%',
+          'Possesses an Utsusemi +1 trait which grants AA HM an extra shadow.',
+          'If there is a NIN, PLD, or RUN in the party, behaves as a damage dealer: Uses Innin , Berserk .',
+          'If there are no other tanks in the party, behaves as a tank: Uses Yonin , Warcry .',
+          'Uses Provoke in both situations in order to be sub tank.',
+          'Casts debuffs when does not have hate.',
+          'Starts fights with Migawari if available.',
+          'Uses weapon skills at 1000 TP and does not try to skillchain.',
+        },
+    },
+    ['AAMR'] = {
+        job           = 'Beastmaster / Thief',
+        abilities     = 'Sneak Attack , Trick Attack',
+        weapon_skills = 'Cloudsplitter / , Calamity / , Rampage , Havoc Spiral (AoE)',
+        acquisition   = {
+          'Trade the Cipher: Ark MR item to one of the beginning Trust quest NPCs, which may be acquired via: Complete Dawn and all its cutscenes. Be in possession of the Bundle of scrolls key item. Have obtained the additional following Trust spells: Rainemard , Ark Angel GK , & Ark Angel EV Speak with Jamal in Ru\'Lude Gardens (H-5). After trading Ark Angel EV \'s cipher, you must speak to Jamal , zone, and speak to Jamal again to unlock the Objective for Cipher: Ark MR . Be sure before zoning Jamal asks you to "Please come by again later." Complete the Records of Eminence Objective : Stifle Your Envy',
+        },
+        special       = {
+          'Possesses HP+20%, BST / THF Traits except TH is limited to Treasure Hunter I.',
+          'Will Sneak Attack + Weapon Skill if behind the enemy.',
+          'Will Trick Attack + Weapon Skill if behind a player or trust.',
+          'If conditions for both are possible will Sneak Attack + Trick Attack + Weapon Skill .',
+          'AAMR\'s Cloudsplitter can deal massive damage (~8000+) at ilvl119.',
+          'Rarely ever uses Havoc Spiral which does AoE damage (~100-300) and Additional Effect: Sleep .',
+          'Uses weapon skill as soon as Sneak Attack or Trick Attack are possible with 1000+ TP: favoring Calamity',
+          'When in front of the target without Trick Attack , uses weapon skill with 1000+ TP: favoring Cloudsplitter',
+          'Holds TP up to 3000 to wait for the previously mentioned conditions, does not try to skillchain.',
+        },
+    },
+    ['AATT'] = {
+        job           = 'Black Mage / Dark Knight',
+        spells        = 'Single-target elemental nukes I - V , Sleepga / II , Bio / II , Poison / II , Aspir , Stun',
+        abilities     = 'Elemental Seal , Last Resort , Souleater',
+        weapon_skills = 'Guillotine , Amon Drive (AoE Paralyze + Petrify )',
+        acquisition   = {
+          'Trade the Cipher: Ark TT item to one of the beginning Trust quest NPCs, which may be acquired via: Complete Dawn and all its cutscenes. Be in possession of the Bundle of scrolls key item. Have obtained the additional following Trust spells: Rainemard , Ark Angel GK , Ark Angel EV , & Ark Angel MR Speak with Jamal in Ru\'Lude Gardens (H-5). After trading Ark Angel MR \'s cipher, you must speak to Jamal , zone, and speak to Jamal again to unlock the Objective for Cipher: Ark TT . Be sure before zoning Jamal asks you to "Please come by again later." Complete the Records of Eminence Objective : Overcome your Cowardice',
+        },
+        special       = {
+          'Possesses HP+20%, MP+50%',
+          'Ark Angel Tarutaru uses Last Resort and Souleater whenever the recast is ready and tries to keep up Poison and Bio fulltime on the enemy.',
+          'At the start of the fight and each time after using Amon Drive, he casts Sleepga , augmented by Elemental Seal if the recast is ready.',
+          'He only uses elemental spells to magic burst skillchains, often trying to burst two spells on the same skillchain (the second burst failing most of the time due to high casting times).',
+          'Aspir is used to burst Compression -skillchains and also casted freely when his MP is below 50%, but are only used against enemies which have MP.',
+          'Will also Sleep / Sleep II single target enemies.',
+          'Casts Stun based on enemy TP moves.',
+          'Uses weapon skills at 2000 TP and does not try to skillchain.',
+          'Avoids casting spells that would be resisted. Elemental Seal prioritized Sleep spells, but can be used for Poison II on Sleep-immune enemies.',
+          'Does not magic burst targets where he doesn\'t have enough magic accuracy.',
+        },
+    },
     ['Abenzio'] = {
         job           = 'Monk / Warrior',
         weapon_skills = 'Blank Gaze (Conal paralysis) , Antiphase (AoE silence) , Uppercut / , Blow (Damage + Stun)',
@@ -71,7 +154,23 @@ return {
           'Twirling Dervish requires level 50.',
         },
     },
-    ['Ajido-Marujido'] = {},   -- no BG-Wiki Cipher page found
+    ['Ajido-Marujido'] = {
+        job           = 'Black Mage / Red Mage',
+        spells        = 'Cure I - IV , Dispel , Single-target elemental nukes I - V , Slow , Paralyze',
+        acquisition   = {
+          'Complete the initiation quest in Windurst .',
+          'Must be Rank 6 or higher in any nation. Speak to Apururu in Windurst Woods at (H-9). May not be obtained if the player is currently between Windurst Missions 6-1 to 9-2. Even if you changed Nations - you must change back to Windurst and complete Missions.',
+        },
+        special       = {
+          'Possesses Cure Potency Bonus +25%, Fast Cast Bonus , Magic Burst Bonus , A+ skill in Elemental, Enfeebling, and Healing magic skill.',
+          'Does not melee, but instead uses short-ranged palm blasts.',
+          'Possesses neither TP moves nor abilities that utilize TP.',
+          'Ajido-Marujido prioritizes Dispel over elemental spells .',
+          'Ajido-Marujido will not attempt to cast elemental / enfeebling magic on an enemy that is sure to resist it.',
+          'When he draws hate , he will stop casting spells and start to use his weak attacks until the enemy attacks someone else.',
+          'Ajido-Marujido has higher ratings in his magic skills than normal black mages.',
+        },
+    },
     ['Aldo'] = {
         job           = 'Thief / Ninja',
         abilities     = 'Bully , Sneak Attack , Assassin\'s Charge',
@@ -88,7 +187,21 @@ return {
           'Gains TP quickly with Dual Wield and Triple Attack trait: 50 TP/hit x2.',
         },
     },
-    ['Aldo (UC)'] = {},   -- no BG-Wiki Cipher page found
+    ['Aldo (UC)'] = {
+        job           = 'Thief / Ninja',
+        abilities     = 'Bully , Sneak Attack',
+        weapon_skills = '(50) Sarva\'s Storm /',
+        acquisition   = {
+          'Be a member of the Aldo Unity Concord. Obtain 5000 Unity Accolades through Records of Eminence objectives for a Partial Personal Evaluation of 5pt.',
+        },
+        special       = {
+          'Possesses 5/5 Triple Attack Rate merits at lv75.',
+          'Excellent skillchain partner with thieves using Rudra\'s Storm .',
+          'Uses Sneak Attack when behind the target or after using Bully , but does not try to combine it with weapon skills.',
+          'Uses Sarva\'s Storm whenever another party member has 1000 TP in order to open skillchains.',
+          'If no other party members gain TP, will use Sarva\'s Storm at 3000 TP.',
+        },
+    },
     ['Amchuchu'] = {
         job           = 'Rune Fencer / Warrior',
         spells        = 'Flash , Foil , Stoneskin , Refresh , Phalanx , Regen I - IV , Protect I - IV , Shell I - V , Bar-element spells',
@@ -109,8 +222,49 @@ return {
           'Holds up to 3000 TP to close skillchains. Weapon skills are a lower priority,',
         },
     },
-    ['Apururu (UC)'] = {},   -- no BG-Wiki Cipher page found
-    ['Arciela'] = {},   -- no BG-Wiki Cipher page found
+    ['Apururu (UC)'] = {
+        job           = 'White Mage / Red Mage',
+        spells        = 'Cure I - VI , Curaga I - V , Protect/ra I - V , Shell/ra I - V , -na Spells , Erase , Stoneskin , Haste',
+        abilities     = 'Martyr , Devotion , Convert',
+        weapon_skills = '(50) Nott',
+        acquisition   = {
+          'Be a member of the Apururu Unity Concord. Obtain 5000 Unity Accolades through Records of Eminence objectives for a Partial Personal Evaluation of 5pt (this is also how you re-obtain it in the event you\'ve lost it).',
+        },
+        special       = {
+          'Possesses Regain (75 TP/tick).',
+          'Does not melee or cast spells on enemies, relying on Regain for TP.',
+          'Uses TP to recover MP. It is a low priority, and at 3000 TP she may continue casting Cure until she is out of MP. The really high Regain compared to other trusts is balanced by the high MP cost of Curaga .',
+          'Will use Curaga spells when 3 or more party members are in yellow HP (<75%) or asleep .',
+          'Casts Haste on the player, herself, and melee damage dealers in the party (with the exception of NIN).',
+          'Uses Convert and Martyr only at very low MP (<10%).',
+          'Casts Stoneskin on herself and tries to keep it applied.',
+          'Uses Devotion on party members that have <20% MP.',
+          'Tries to stay a distance (~15\') away from the monster when she doesn\'t have hate.',
+          'Devotion and Martyr have a shorter range (10.6\'), so pay attention to her movements if you need those effects.',
+        },
+    },
+    ['Arciela'] = {
+        job           = 'Red Mage / Paladin',
+        spells        = 'Refresh / II , Haste / II , Protect I - V , Shell I - V , Slow / II , Paralyze / II , Addle , Dispel',
+        abilities     = 'Bellatrix of Light, Bellatrix of Shadows',
+        weapon_skills = 'Guiding Light (AoE Atk+Def+M.Atk+M.Def Up) , Illustrious Aid , Dynastic Gravitas',
+        acquisition   = {
+          'Complete The Light Within . Speak to Ploh Trishbahk at the castle gates in Eastern Adoulin . Examine the "Sandy Overlook" in Ceizak Battlegrounds (J-10).',
+        },
+        special       = {
+          'Possesses MP+20%, Regain (25 TP/tick), RDM/PLD traits including Auto-Refresh I.',
+          'Tends to behave more as a support as opposed to Arciela II.',
+          'Uses Refresh and Haste only on the player and herself, prioritizing the player.',
+          'Will always overwrite Haste with Haste II .',
+          'Auto-attacks seem to be light elemental regardless of stance, and are effected by MAB/MDB.',
+          'Bellatrix of Light - Enables enhancing magic and Illustrious Aid',
+          'Bellatrix of Shadows - Enables enfeebling magic and Dynastic Gravitas. No cooldown on changing between the two stances, she will switch as needed to cast spells based on priority.',
+          'Dynastic Gravitas - Inflicts amnesia on nearby enemies.',
+          'Guiding Light - Nearby party members gain increased attack, defense, magic attack, and magic defense for 30 seconds. Usable from either stance. The effect overwrites and prevents application of Cocoon and Saline Coat .',
+          'Illustrious Aid - Restores HP to nearby party members. Used when multiple party members are in yellow HP (<75%).',
+          'Stationary Behavior: will stay in place after engaging. If allies/enemies are out of her casting range and in line of sight, she will slowly inch toward them until they\'re in casting range. Haste II grants 307/1024 Magical Haste.',
+        },
+    },
     ['Arciela II'] = {
         job           = 'Red Mage / Black Mage',
         spells        = 'Refresh / II , Haste / II , Flurry II , Protect I - V , Shell I - V , Slow / II , Paralyze / II , Addle , Dispel , Single Target Elemental Nukes I - V',
@@ -167,8 +321,39 @@ return {
           'Daybreak (~3 min cooldown, ~1 min 30 sec duration) When August\'s HP drops below a certain threshold (~66%), he uses Daybreak if it\'s available which partially restores some HP and MP, resets his TP, and activates an aura with wings of light Daybreak is a -50% PDT effect, full Erase , Stats boost, Regen , and Store TP During Daybreak, August\'s next weapon skill will be Fulminous Fury or Noble Frenzy, followed by No Quarter Daybreak is removed after the use of No Quarter. Daybreak\'s cooldown may start when No Quarter is used (meaning it\'s about a 1.5min cooldown)',
         },
     },
-    ['Ayame'] = {},   -- no BG-Wiki Cipher page found
-    ['Ayame (UC)'] = {},   -- no BG-Wiki Cipher page found
+    ['Ayame'] = {
+        job           = 'Samurai / Samurai',
+        abilities     = 'Meditate , Hasso , Third Eye',
+        weapon_skills = '(1) Tachi: Enpi / , (9) Tachi: Hobaku , (23) Tachi: Goten / , (33) Tachi: Kagero , (49) Tachi: Jinpu / , (55) Tachi: Koki / , (60) Tachi: Yukikaze / , (65) Tachi: Gekko / , (71) Tachi: Kasha /',
+        acquisition   = {
+          'Complete the initiation quest in Bastok .',
+          'Must be Rank 3 or higher in any nation. Speak with Ayame in Metalworks at (K-7).',
+        },
+        special       = {
+          'Skillchains: Once the player uses a Weapon Skill with Ayame summoned, she will hold off using weapon skills until the player has 1000 or more TP. This helps to open the highest level Skillchain possible determined by the previously used weapon skill. She can open Light or Darkness skillchains to be closed by weapon skills with Fragmentation or Gravitation properties. Ayame will always try to open a Skillchain rather than close it. She will Weapon Skills regardless how much HP is remaining on the current monster. Holds TP until 3000 to open skillchains for the player.',
+          'Uses Meditate , when the ability is ready, in situations where the player has TP but she does not.',
+          'Only uses Third Eye when she pulls hate.',
+        },
+    },
+    ['Ayame (UC)'] = {
+        job           = 'Samurai / Warrior',
+        abilities     = 'Blade Bash , Sengikori , Hasso , Third Eye , Shikikoyo , Meditate',
+        weapon_skills = '(5) Tachi: Jinpu / , (25) Tachi: Koki / , (50) Tachi: Mudo / , (60) Tachi: Kasha / , (70) Tachi: Ageha /',
+        acquisition   = {
+          'Be a member of the Ayame Unity Concord. Obtain 5000 Unity Accolades through Records of Eminence objectives for a Partial Personal Evaluation of 5pt.',
+        },
+        special       = {
+          'Possesses 5/5 Shikikoyo merits at level 75 (shared TP +48%)',
+          'Skillchains Specializes in two-person 3-step or 5-step skillchains with the player, resulting in higher Skillchain damage and Magic Burst Damage Bonus with each step. Completes skillchains while using Sengikori if ready. Only closes skillchains started by the player (or their pet). Waits at 3000 TP until conditions are met. Always closes a higher level skillchain, ignores the skillchain if she can\'t. Due to the weapon skills available, cannot close skillchains started with Distortion or Fusion . Does not close Level 4 Light skillchains, Tachi: Mudo is only used to close Darkness . Always chooses Tachi: Ageha following a Detonation opener. Level 1 Chainbound (Status) will be closed by Tachi: Koki for Fragmentation . Abilities are used based on skillchain level and battle condition, so she may Meditate before a weaponskill instead of waiting for you to reach 1000 TP.',
+          'Ayame\'s consistent weapon skill choice and timing make her a good choice for parties who want to set up magic bursts of a specific element boosted by Sengikori (+25% Magic Burst Damage).',
+          'High TP gain rate with Hasso / Zanshin and >250 TP per hit depending on level of SAM Store TP trait.',
+          'Tachi: Ageha is the 2015 version.',
+          'Defense Down could need more TP and Magic Accuracy than the player\'s version to land on high-level enemies. Trust weapon skills have different IDs than the ones players use and have a separate implementation.',
+          'When she has 2000+ TP, she uses Shikikoyo on the party leader after they use a weapon skill. After summoning Ayame, if she reaches 2000 TP before the party leader has used a weapon skill, uses Shikikoyo immediately.',
+          'If she gets hate, uses Third Eye .',
+          'Stuns enemies with Blade Bash , only to interrupt spellcasting.',
+        },
+    },
     ['Babban'] = {
         job           = 'Monk / Monk',
         weapon_skills = 'Wild Oats , Headbutt , Photosynthesis (Grants Regen ) , Petal Pirouette (Resets foe\'s TP to zero) (AoE)',
@@ -215,8 +400,37 @@ return {
           'This Indi-CHR grants a +9.7% Defense Bonus and +5 Magic Defense Bonus and +5 CHR at lv. 99.',
         },
     },
-    ['Chacharoon'] = {},   -- no BG-Wiki Cipher page found
-    ['Cherukiki'] = {},   -- no BG-Wiki Cipher page found
+    ['Chacharoon'] = {
+        job           = 'Thief / Ranger',
+        weapon_skills = 'Sharp Eye (Conal) , Tripe Gripe , Pocket Sand (Conal)',
+        acquisition   = {
+          'Complete Trial of the Chacharoon .',
+        },
+        special       = {
+          'Possesses HP-10%, MP-10%',
+          'Very low delay, but also has relatively low base damage.',
+          'Occasionally performs a throwing ranged attack on the enemy.',
+          'Chacharoon\'s Sharp Eye resembles a Gaze attack but it has no directional requirement.',
+          'The status effects Chacharoon applies could be used in kiting or evasion strategies. The effect may be difficult to land on higher level enemies. Gravity and Defense Down are wind-based status effects. If half- resisted , duration will be halved.',
+          'Uses weapon skills at 1000 TP.',
+          'Tripe Gripe and Sharp Eye do not deal damage, only applying status effects: Tripe Gripe applies Amnesia (30s?) and Attack Boost effects to an enemy. Sharp Eye applies Gravity II (60s) and 25% Defense Down (30s or 60s ). The Defense Down effect will show in the log when Gravity is fully resisted. Pocket Sand applies Blind (Up to -50 Accuracy , 60s) and deals damage.',
+        },
+    },
+    ['Cherukiki'] = {
+        job           = 'White Mage / Black Mage',
+        spells        = 'Cure I - VI , Protect/ra I - V , Shell/ra I - V , Regen I - IV , Haste , Slow , Paralyze , Silence',
+        acquisition   = {
+          'Complete One to be Feared . Speak with Taillegeas in Ru\'Lude Gardens (I-7).',
+        },
+        special       = {
+          'Possesses Regen Effect merits, Enhanced Regen potency.',
+          'Does not engage.',
+          'Favors Regen spells over Cure spells .',
+          'Tries to stay a distance (~15\') away from the monster when she doesn\'t have hate.',
+          'Native Regen effect of 5hp/tick.',
+          'Casts Haste on the player, herself, and melee damage dealers in the party (with the exception of NIN).',
+        },
+    },
     ['Cid'] = {
         job           = 'Warrior / Ranger',
         abilities     = 'Berserk , Aggressor',
@@ -231,9 +445,51 @@ return {
           'Will save Berserk until he is about to use a weapon skill.',
         },
     },
-    ['Cornelia'] = {},   -- no BG-Wiki Cipher page found
-    ['Curilla'] = {},   -- no BG-Wiki Cipher page found
-    ['D. Shantotto'] = {},   -- no BG-Wiki Cipher page found
+    ['Cornelia'] = {
+        job           = 'Geomancer / Bard',
+        spells        = 'None',
+        abilities     = 'None',
+        weapon_skills = 'None',
+        acquisition   = {
+          'If you have completed the quest Trust, you will automatically obtain the alter ego upon logging in after the Tuesday, December 9th, 2025, version update. No message will be displayed signifying that you have acquired the alter ego.',
+          'If you have not completed the quest Trust, you must first complete it after the Tuesday, December 9th, 2025, version update and then relog or change areas. No message will be displayed signifying that you have acquired the alter ego.',
+          'Cornelia was/is only available during the following times: From September 2017 until May 2018. From May 2022 until November 2022. From June 2024 until December 2024. From December 2025 until March 2026.',
+        },
+        special       = {
+          'Haste +20%, Accuracy +30, Ranged Accuracy +30, Magic Accuracy +30',
+        },
+    },
+    ['Curilla'] = {
+        job           = 'Paladin / Paladin',
+        spells        = 'Cure I - IV , Flash',
+        abilities     = 'Sentinel',
+        weapon_skills = '(5) Red Lotus Blade / , (25) Seraph Blade , (50) Swift Blade , (60) Vorpal Blade /',
+        acquisition   = {
+          'Complete the initiation quest in San d’Oria .',
+          'Must be Rank 3 or higher in any nation. Speak with Curilla in Chateau d\'Oraguille at (I-9).',
+        },
+        special       = {
+          'Possesses MP+30%, Guardian (Sentinel enmity loss -95%), Sentinel Recast merited (-50 sec), Cure Potency Bonus +25%, and Cure Casting Time Down .',
+          'Does not use Provoke , but will use Flash . This leads to poor hate control.',
+          'Uses TP randomly and does not try to skillchain.',
+          'Cures players and trusts in yellow (<75%) HP.',
+        },
+    },
+    ['D. Shantotto'] = {
+        job           = 'Black Mage / Dark Knight',
+        spells        = 'Single-target elemental nukes I - V',
+        weapon_skills = 'Guillotine , Cross Reaper , Shadow of Death / , Salvation Scythe',
+        acquisition   = {
+          'Trade the Cipher: Domina item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Red) Mog Pell (Ochre)',
+        },
+        special       = {
+          'Starts battles with Tier V nukes before meleeing.',
+          'Occasionally nukes as long as she isn\'t in the top enmity slot, does not try to magic burst. Spells are used more often against enemies resistant to slashing damage, such as elementals.',
+          'Only uses darkness-aligned elemental spells ( ), ignoring enemy weakness.',
+          'Salvation Scythe inflicts Poison , Bio , Paralyze and Slow .',
+          'Uses weapon skills at 1000 TP.',
+        },
+    },
     ['Darrcuiln'] = {
         job           = 'Warrior / Red Mage " Beast "',
         weapon_skills = 'Howling Gust / , Starward Yowl / , Righteous Rasp / , Aurous Charge / , Stalking Prey (AoE) /',
@@ -266,8 +522,36 @@ return {
           'Gains 127 TP with Sword hits, 178 TP with Marksmanship.',
         },
     },
-    ['Excenmille'] = {},   -- no BG-Wiki Cipher page found
-    ['Excenmille [S]'] = {},   -- no BG-Wiki Cipher page found
+    ['Excenmille'] = {
+        job           = 'Paladin / Paladin',
+        spells        = 'Flash , Cure I - IV',
+        abilities     = 'Sentinel',
+        weapon_skills = 'Double Thrust , Leg Sweep , Penta Thrust',
+        acquisition   = {
+          'Complete the initiation quest in San d’Oria .',
+        },
+        special       = {
+          'Uses TP randomly and does not try to skillchain.',
+          'Uses Sentinel and Flash on cooldown for enmity.',
+          'Casts Cure on party members in orange HP (<50%).',
+          'Prioritizes healing if there is no WHM in the party. Cure threshold changes to party members under <75%.',
+        },
+    },
+    ['Excenmille [S]'] = {
+        job           = 'Paladin / Paladin',
+        spells        = 'Flash , Cure I - IV',
+        abilities     = 'Sentinel',
+        weapon_skills = 'Double Thrust , Leg Sweep , Penta Thrust',
+        acquisition   = {
+          'Complete the initiation quest in San d’Oria .',
+        },
+        special       = {
+          'Uses TP randomly and does not try to skillchain.',
+          'Uses Sentinel and Flash on cooldown for enmity.',
+          'Casts Cure on party members in orange HP (<50%).',
+          'Prioritizes healing if there is no WHM in the party. Cure threshold changes to party members under <75%.',
+        },
+    },
     ['Fablinix'] = {
         job           = 'Thief / Red Mage',
         spells        = 'Stun , Enwater , Cure I - IV',
@@ -284,10 +568,69 @@ return {
           'Fablinix\'s high MP pool and access to Stun at the BLM level (lv.42) may give the impression that he is a BLM or has multiple main jobs. However, if you use him in area with subjob restrictions he will have 0 MP. If you give him at least +8MP through AoE Food (before applying his +350%) or by raising your item level, he will still be able to cast Stun but none of the other spells. He might have a different version of Stun than players, which may explain reports of his Stun recast being shorter.',
         },
     },
-    ['Ferreous Coffin'] = {},   -- no BG-Wiki Cipher page found
-    ['Flaviria (UC)'] = {},   -- no BG-Wiki Cipher page found
-    ['Gadalar'] = {},   -- no BG-Wiki Cipher page found
-    ['Gessho'] = {},   -- no BG-Wiki Cipher page found
+    ['Ferreous Coffin'] = {
+        job           = 'White Mage / Warrior',
+        spells        = 'Cure I - VI , Raise I - III , -na Spells , Haste',
+        weapon_skills = 'Randgrith /',
+        acquisition   = {
+          'Trade the Cipher: F. Coffin item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Ochre)',
+        },
+        special       = {
+          'Auto Refresh II . HP-10%, MP+35%',
+          'Will only cast Raise III on KO party members in casting range.',
+          'Will only cast status ailment removal spells on the player with the highest enmity.',
+          'Has a high Cursna success rate (only casts on the highest threat player) Official note',
+          'Ferreous Coffin only uses Randgrith and benefits from relic aftermath (acc +20).',
+          'Will use TP as soon as he gets it, so he is good at maintaining enemy Evasion Down and initiating Light skillchains.',
+          'Casts Haste on party members regardless of job.',
+        },
+    },
+    ['Flaviria (UC)'] = {
+        job           = 'Dragoon / Warrior',
+        abilities     = 'Jump , High Jump , Super Jump , Angon , Berserk',
+        weapon_skills = '(5) Skewer / , (25) Impulse Drive / , (50) Celidon\'s Torment /',
+        acquisition   = {
+          'Be a member of the Flaviria Unity Concord. Obtain 5000 Unity Accolades through Records of Eminence objectives for a Partial Personal Evaluation of 5pt.',
+        },
+        special       = {
+          'Possesses merits in Jump recast down, High Jump recast down, and Angon at level 75.',
+          'Uses weapon skills at 1000 TP. Does not try to skillchain.',
+          'Celidon\'s Torment is a Unity Leader version of Camlann\'s Torment which has a similar Ignores Defense property.',
+          'Aggressive weapon skill usage and Jumps enhanced by Berserk , boosted Unity Leader stats (and Flaviria Unity Shirt ), and early access to higher level weapon skills make Flaviria a strong physical damage dealer to have while leveling. An advantage of the Piercing Damage Type , is that enemies weak to it like Mandragora , Birds , and Flys are common across Vana\'diel.',
+        },
+    },
+    ['Gadalar'] = {
+        job           = 'Black Mage / Black Mage',
+        spells        = 'Firaga I - III , Blaze Spikes',
+        weapon_skills = 'Spinning Scythe / , Spiral Hell / , Salamander Flame (aoe fire) / , Vorpal Scythe /',
+        acquisition   = {
+          'Complete Embers of His Past . Speak to Fari-Wari in Aht Urhgan Whitegate (K-12).',
+        },
+        special       = {
+          'Possesses MP+25%, Magic Attack Bonus +25',
+          'Favors Firaga III regardless of surrounding enemies. Avoids casting spells that would have a low Magic Hit Rate , also uses lower tier spells depending on magic accuracy and level.',
+          'Gadalar recovers MP when he is hit with physical attacks.',
+          'Uses TP as soon as he gets it.',
+          'Favors Salamander Flame , a unique AoE weapon skill that also applies Dia III for 30 seconds.',
+        },
+    },
+    ['Gessho'] = {
+        job           = 'Ninja / Warrior',
+        spells        = 'Utsusemi: Ichi / Ni , Hojo: Ichi / Ni , Kurayami: Ichi / Ni',
+        abilities     = 'Provoke , Yonin , Shiko no Mitate ( Yagudo Parry ), Rinpyotosha ( Yagudo Howl : Attack Boost )',
+        weapon_skills = 'Happobarai ( Yagudo Sweep ) / , Hane Fubuki ( Feather Storm ) , Shibaraku (AoE) /',
+        acquisition   = {
+          'Complete Passing Glory . Examine the cushion in Aht Urhgan Whitegate (J-12).',
+        },
+        special       = {
+          'Will only use the highest tier debuff available, but will use both Utsusemi spells.',
+          'Will maintain Yonin full time.',
+          'Greatly benefits from capping magical haste as it will allow for better maintenance of Utsusemi shadows.',
+          'Holds TP until 1500 to try to close skillchains.',
+          'Gessho is a good tank choice for players trying to avoid Light-based damage since his weapon skills won\'t accidentally open Light skillchains.',
+          'Special abilities: Shiko no Mitate : Defense Boost + Stoneskin + Issekigan Rinpyotosha : Party members gain a 3 minute Attack Boost (+25% Attack) effect. 5 minute cooldown.',
+        },
+    },
     ['Gilgamesh'] = {
         job           = 'Samurai / Warrior',
         abilities     = 'Hasso , Third Eye , Sekkanoki , Hagakure',
@@ -316,8 +659,39 @@ return {
           'Uses weapon skills at 1000 TP, but it is lower priority.',
         },
     },
-    ['I. Shield (UC)'] = {},   -- no BG-Wiki Cipher page found
-    ['Ingrid'] = {},   -- no BG-Wiki Cipher page found
+    ['I. Shield (UC)'] = {
+        job           = 'Warrior / Corsair',
+        abilities     = 'Provoke , Aggressor , Restraint , Retaliation , Warcry , Blood Rage , Tomahawk , Savagery',
+        weapon_skills = '(5) Raging Rush / , (25) Steel Cyclone / , (50) Soturi\'s Fury /',
+        acquisition   = {
+          'Be a member of the Invincible Shield Unity Concord. Obtain 5000 Unity Accolades through Records of Eminence objectives for a Partial Personal Evaluation of 5pt.',
+        },
+        special       = {
+          'Possesses Damage Taken -20%. WAR/traits.',
+          'Depending on Unity Ranking: HP+20%~+30%.',
+          'Uses Warcry then Blood Rage as soon as Warcry ends.',
+          'Uses Tomahawk on Skeletons , Slimes , and Elementals .',
+          'He is a damage dealer who Provokes . When you don\'t need a tank, he\'ll do more damage with Retaliation . To get the most out of Retaliation , this version of Ginuva does not have his shield.',
+          'Holds up to 1500 TP to close skillchains.',
+          'At item level, he gets the same ilvl stat increase as the tanks and Monberaux.',
+        },
+    },
+    ['Ingrid'] = {
+        job           = 'White Mage / White Mage',
+        spells        = 'Haste , Banish I - III , Cursna',
+        weapon_skills = 'Seraph Strike , Judgment , Hexa Strike',
+        acquisition   = {
+          'Complete The Merciless One . Speak with Rigobertine in Eastern Adoulin (J-7).',
+        },
+        special       = {
+          'Possesses Undead Killer , Banish effectiveness vs Undead +10 (28/256) .',
+          'Engages and closes in to melee her target. (Ingrid gains 100 TP/hit)',
+          'Holds up to 1500 TP in order to close skillchains.',
+          'Cycles through Banish spells (highest tier to lowest), making her useful for Undead targets.',
+          'Places extreme priority on using Cursna should any party members be Doomed/Cursed.',
+          'Casts Haste on the player regardless of job and on other party members with melee jobs.',
+        },
+    },
     ['Ingrid II'] = {
         job           = 'White Mage / Warrior',
         spells        = 'Banish I - III , Cursna , Holy',
@@ -372,8 +746,34 @@ return {
           'Rise from Ashes is a weapon skill that restores 25% HP of all party members, restores MP, and provides a 500HP Stoneskin buff. She will use Rise From Ashes if 3 or more party members are at yellow HP (75%) or if a party member is asleep.',
         },
     },
-    ['Iron Eater'] = {},   -- no BG-Wiki Cipher page found
-    ['Jakoh (UC)'] = {},   -- no BG-Wiki Cipher page found
+    ['Iron Eater'] = {
+        job           = 'Warrior / Warrior',
+        abilities     = 'Provoke , Berserk , Restraint',
+        weapon_skills = 'Shield Break , Armor Break , Steel Cyclone /',
+        acquisition   = {
+          'Complete the initiation quest in Bastok .',
+          'Have obtained the following Trust spells: Naji , Ayame , & Volker Speak to Iron Eater in the Metalworks (J-8).',
+        },
+        special       = {
+          'Possesses 5/5 Double Attack merits, enhanced Double Attack rate, enhanced Store TP .',
+          'Will only use Provoke if your HP is low.',
+          'Will use Restraint and waits until 35~40 attacks have landed (long after reaching 3000 TP) to use a random weaponskill.',
+          'While not using Restraint , uses TP as soon as he gets it.',
+        },
+    },
+    ['Jakoh (UC)'] = {
+        job           = 'Thief / Warrior',
+        abilities     = 'Conspirator , Trick Attack , Sneak Attack , Feint',
+        weapon_skills = '(5) Dancing Edge / , (25) Evisceration / , (50) Sarva\'s Storm /',
+        acquisition   = {
+          'Be a member of the Jakoh Wahcondalo Unity Concord. Obtain 5000 Unity Accolades through Records of Eminence objectives for a Partial Personal Evaluation of 5pt.',
+        },
+        special       = {
+          'Uses weapon skills at >2000 TP with Trick Attack and/or Sneak Attack . Holds up to 3000 TP to wait for positioning. Weapon skill used is random. Does not try to close skillchains.',
+          'Will open with Feint and uses it on cooldown.',
+          'Wields a knife. Gains 55 TP on hit.',
+        },
+    },
     ['Joachim'] = {
         job           = 'Bard / White Mage',
         spells        = 'Sword/Blade Madrigal , Battlefield/Carnage Elegy , Advancing/Victory March , Army\'s Paeon I - VI , Mage\'s Ballad I - III , Valor Minuet I - V , Knight\'s Minne I - V , Cure I - IV , Erase , -na Spells',
@@ -390,10 +790,74 @@ return {
           'Blade Madrigal grants +60 Accuracy. None of Joachim\'s songs gain any instrument/equipment bonuses.',
         },
     },
-    ['Karaha-Baruha'] = {},   -- no BG-Wiki Cipher page found
-    ['Kayeel-Payeel'] = {},   -- no BG-Wiki Cipher page found
-    ['King of Hearts'] = {},   -- no BG-Wiki Cipher page found
-    ['Klara'] = {},   -- no BG-Wiki Cipher page found
+    ['Karaha-Baruha'] = {
+        job           = 'White Mage / Summoner',
+        spells        = 'Cure I - VI , Protect/ra I - V , Shell/ra I - V , -na Spells , Haste , Barelementra',
+        weapon_skills = 'Spirit Taker , Sunburst / , Starburst / , Howling Moon (AoE) / , Lunar Bay /',
+        acquisition   = {
+          'Trade the Cipher: Karaha item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Red) Mog Pell (Ochre)',
+        },
+        special       = {
+          'HP-10%, MP+20%',
+          'Possesses very high max MP and low HP on par with Summoner main-job. Has the lowest HP among the healers.',
+          'Will attempt to close a Skillchain so long as he has 1000 or more TP.',
+          'Will save his TP until 3000 to use Spirit Taker if unable to close a skillchain and he has less than full MP.',
+          'Will cast Barelementra after taking damage from a skill or spell with elemental properties.',
+        },
+    },
+    ['Kayeel-Payeel'] = {
+        job           = 'Black Mage / Summoner',
+        spells        = 'Single-target elemental nukes I - V , Multi-target elemental nukes I - III, -aja , Ancient Magic / II',
+        weapon_skills = 'Gate of Tartarus / , Tartarus Torpor (AOE Sleep, M.Def/M.Eva down) , Sunburst /',
+        acquisition   = {
+          'Trade the Cipher: Kayeel item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Ochre)',
+        },
+        special       = {
+          'Kayeel-Payeel has a very high amount of Fast Cast and tries to magic burst spells.',
+          'He can only cast spells of the Ice and Lightning elements, ignores enemy weaknesses.',
+          'Quickly burns through his MP with spells like Burst II / Freeze II and -aja III spells.',
+          'He benefits from the relic aftermath of Gate of Tartarus (refresh 8 mp/tick) and will use it when he runs out of MP.',
+          'Does not engage, but will attack with his staff if the enemy is nearby.',
+          'Uses weapon skills at 1500 TP but does not try to skillchain.',
+        },
+    },
+    ['King of Hearts'] = {
+        job           = 'Red Mage / White Mage',
+        spells        = 'Refresh / II , Haste / II , Dia / II / III , Temper , (92) Firaga IV , Cure I - IV , Phalanx / II , -na Spells , Erase',
+        weapon_skills = 'Bludgeon / , Shuffle (Dispel) , Deal Out (AoE) , Double Down',
+        acquisition   = {
+          'Trade the Cipher: King item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Ochre)',
+        },
+        special       = {
+          'Possesses HP+25%, MP+80%',
+          'Benefits from a permanent Composure effect and gains +50% Enhancing Magic duration when casting on other targets than himself.',
+          'Is considered Arcana , thus is susceptible to Monster Correlation effects.',
+          'The King of Hearts mainly acts as a RDM but has access to spells of WHMs and BLMs.',
+          'Opens the fight up with Dia before any other spells. (Will continually attempt to Dia an enemy even if the enemy is immune)',
+          'Will cast Cure on any players at 50% or less HP.',
+          'Prioritizes Erase and -na spells above other spells. Will quickly cast these on any trust or party member immediately after being debuffed, starting with the master and itself.',
+          'Casts Haste , Refresh , and Phalanx on the player regardless of their job or enmity. Will not cast Haste or Refresh on other players or trusts. King of Hearts thinks the player is his master, Ambassador Karababa (BLM).',
+          'Casts Phalanx on the party member or alter ego with the highest enmity on King\'s current target\'s list. -35 dmg Phalanx at level 99.',
+          'Will magic burst Firaga off of Liquefaction , Fusion , or Light skillchains.',
+          'From time to time the King of Hearts may randomly “Level Up”, which restores some HP and MP as well as unlocking access to Bludgeon . It doesn’t seem to be actively triggered, but may occur at any time during combat.',
+          'Uses TP randomly and does not try to skillchain.',
+          'Prioritizes Shuffle when able to Dispel an enemy buff.',
+          '* Haste II grants 307/1024 Magical Haste.',
+        },
+    },
+    ['Klara'] = {
+        job           = 'Warrior / Warrior',
+        abilities     = 'Berserk , Provoke , Warcry',
+        weapon_skills = 'Fast Blade , Vorpal Blade / , Savage Blade / , Temblor Blade (AoE) /',
+        acquisition   = {
+          'Be in possession of the Bundle of scrolls key item. Complete Bonds of Mythril which is the end of the 12 quest process. Speak with Gentle Tiger in Bastok Markets (S) (H-6).',
+        },
+        special       = {
+          'Temblor Blade is a significantly stronger variant of Circle Blade .',
+          'Uses TP as soon as she gets it.',
+          'Provokes when the player is in orange (50%) HP.',
+        },
+    },
     ['Koru-Moru'] = {
         job           = 'Red Mage / White Mage',
         spells        = 'Refresh / II , Haste / II , Flurry / II , Protect I - V , Shell I - V , Phalanx II , Slow / II , Dia / II / III , Distract / II , Dispel , Cure I - IV',
@@ -411,8 +875,33 @@ return {
           'Does not overwrite Haste with Haste II or Flurry II .',
         },
     },
-    ['Kukki-Chebukki'] = {},   -- no BG-Wiki Cipher page found
-    ['Kupipi'] = {},   -- no BG-Wiki Cipher page found
+    ['Kukki-Chebukki'] = {
+        job           = 'Black Mage / Black Mage',
+        spells        = 'Single-target elemental nukes I - V , Multi-target elemental nukes I - III, -aja , Elemental Debuff spells , Sleepga I - II',
+        acquisition   = {
+          'Trade the Cipher: Kukki item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Ochre)',
+        },
+        special       = {
+          'Tries to stay a distance (~15\') away from the monster when he doesn\'t have hate.',
+          'Kukki-Chebukki just uses spells matching the element the current day. On Darksday, he only casts Sleepga II and Sleepga (doesn\'t have Bio, Drain, or Aspir). On Lightsday, does nothing along with Makki-Chebukki since he has no Light-based spells.',
+          'Casts lower-tier spells against enemies with low HP to conserve MP.',
+          'Gains TP from Occult Acumen trait but can\'t use it.',
+        },
+    },
+    ['Kupipi'] = {
+        job           = 'White Mage / White Mage',
+        spells        = 'Cure I - VI , Protect/ra I - V , Shell/ra I - V , -na Spells , Slow , Paralyze , Erase',
+        weapon_skills = 'Starlight , Moonlight',
+        acquisition   = {
+          'Complete the initiation quest in Windurst .',
+        },
+        special       = {
+          'Prioritizes immediate removal of status ailments.',
+          'Will stay in place after engaging up to 20 yalms, allowing the player to pull the monster away. If pulled beyond that, she will move to be within 15 yalms.',
+          'Uses Cure spells on party members in orange HP (<50%) or asleep, with higher priority for the tank or current target of the foe (<75%).',
+          'Will cast single target Protect and Shell on players that get dispelled or otherwise lack the buff. Prioritizes -na and then healing spells over buffing and finally enfeebling. Enfeebling is the lowest priority. Casts Slow first followed by Paralyze, and casts no other enfeebles. Overwrites a lower tier Protect of Shell with a higher tier single target if applicable.',
+        },
+    },
     ['Kupofried'] = {
         job           = 'Geomancer / Bard',
         spells        = 'None',
@@ -426,8 +915,35 @@ return {
           'This stacks with other forms of dedication such as that gained from a Capacity Ring .',
         },
     },
-    ['Kuyin Hathdenna'] = {},   -- no BG-Wiki Cipher page found
-    ['Lehko Habhoka'] = {},   -- no BG-Wiki Cipher page found
+    ['Kuyin Hathdenna'] = {
+        job           = 'Geomancer / Bard',
+        spells        = 'None',
+        abilities     = 'None',
+        weapon_skills = 'None',
+        acquisition   = {
+          'Trade the Cipher: Kuyin item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Red) Mog Pell (Ochre)',
+        },
+        special       = {
+          'Indi-Precision stacks with player Indi-Precision .',
+          'This Indi-Precision grants Accuracy +24, Ranged accuracy +24, and DEX +5 at lv. 99. The amount of DEX increases when Kuyin in employed in your Mog Garden , depending on unknown factors possibly including the ranks of Mog Garden locations and number or length of Kuyin contracts. Up to +2 bonus.',
+        },
+    },
+    ['Lehko Habhoka'] = {
+        job           = 'Thief / Black Mage',
+        spells        = 'Single-target elemental nukes I - II',
+        weapon_skills = 'Iridal Pierce (AoE) / , Lunar Revolution (Conal) / , Debonair Rush / , Inspirit (AoE HP+MP restore+ Erase )',
+        acquisition   = {
+          'Trade the Cipher: Lehko item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Red) Mog Pell (Ochre)',
+        },
+        special       = {
+          'Possesses MP+150%, enhanced Magic Accuracy .',
+          'Has an abnormally high Double/Triple attack rate.',
+          'Tends to use a weapon skill right when he hits 1000TP.',
+          'Regularly uses a throwing Ranged Attack in conjunction with his auto-attacks. Spells are used more frequently against enemies resistant to piercing damage, such as elementals.',
+          'Occasionally uses elemental magic for moderate damage. (Does not attempt to magic burst)',
+          'Use of Inspirit does not appear to be triggered by party condition (i.e. he can use it if everyone is at full HP).',
+        },
+    },
     ['Leonoyne'] = {
         job           = 'Black Mage / Paladin',
         spells        = 'Ice Spikes , Blizzaga I - III',
@@ -445,8 +961,36 @@ return {
           'Leonyone recovers MP when he is hit with physical attacks.',
         },
     },
-    ['Lhe Lhangavo'] = {},   -- no BG-Wiki Cipher page found
-    ['Lhu Mhakaracca'] = {},   -- no BG-Wiki Cipher page found
+    ['Lhe Lhangavo'] = {
+        job           = 'Monk / Warrior',
+        abilities     = 'Dodge , Chakra , Impetus , Focus , Formless Strikes , Provoke',
+        weapon_skills = 'Backhand Blow , Raging Fists , Dragon Kick , Asuran Fists /',
+        acquisition   = {
+          'Trade the Cipher: Lhe item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaigns Mog Pell (Red) Mog Pell (Ochre)',
+        },
+        special       = {
+          'Possesses Invigorate ( Chakra : +Regen).',
+          'Uses Focus if accuracy is below a certain threshold.',
+          'Provokes when the player who summoned her falls below half hp.',
+          'Uses Dodge when in the top enmity slot.',
+          'Uses Formless Strikes if the target is resistant to physical damage ( leech , slime , elemental , ghost )',
+          'Holds TP until 2000 to try to close skillchains.',
+        },
+    },
+    ['Lhu Mhakaracca'] = {
+        job           = 'Beastmaster / Warrior',
+        abilities     = 'Feral Howl , Berserk , Aggressor',
+        weapon_skills = 'Spinning Axe / / , Rampage , Onslaught / , Decimation /',
+        acquisition   = {
+          'Trade the Cipher: Lhu item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Ochre)',
+        },
+        special       = {
+          'Favors Spinning Axe .',
+          'Gains 91 TP per hit.',
+          'Uses TP as soon as she gets it.',
+          'Uses Feral Howl when the enemy is < 20% HP, which can help to prevent abilities triggered by low-hp (e.g. Healing abilities, Final Sting ), especially job abilities you wouldn\'t be able to Stun normally (e.g. Benediction , Mijin Gakure )',
+        },
+    },
     ['Lilisette'] = {
         job           = 'Dancer / Dancer',
         weapon_skills = 'Whirling Edge (AoE) / , Dancer\'s Fury / , Rousing Samba , Sensual Dance , Thorn Dance , Vivifying Waltz ( Divine Waltz II )',
@@ -534,9 +1078,48 @@ return {
           'Great choice for closing Distortion and Darkness skillchains with other trusts due to not having access to Light , Fusion or Fragmentation properties.',
         },
     },
-    ['Maat'] = {},   -- no BG-Wiki Cipher page found
-    ['Maat (UC)'] = {},   -- no BG-Wiki Cipher page found
-    ['Makki-Chebukki'] = {},   -- no BG-Wiki Cipher page found
+    ['Maat'] = {
+        job           = 'Monk / Thief',
+        abilities     = 'Mantra , Perfect Counter , Formless Strikes',
+        weapon_skills = 'Asuran Fists / , One-Ilm Punch , Combo , Dragon Kick , Howling Fist / , Bear Killer (Conal) /',
+        acquisition   = {
+          'Complete Shattering Stars for six or more jobs. Speak with Maat in Ru\'Lude Gardens (H-5).',
+        },
+        special       = {
+          'Possesses Treasure Hunter',
+          'Mantra gives both an HP boost as well as Haste .',
+          'Uses weapon skills at 1000 TP.',
+          'Uses Formless Strikes for enemies resistance to blunt damage (slimes, leeches).',
+        },
+    },
+    ['Maat (UC)'] = {
+        job           = 'Monk / Warrior',
+        abilities     = 'Chakra , Counterstance , Impetus',
+        weapon_skills = '(50) Hollow Smite /',
+        acquisition   = {
+          'Be a member of the Maat Unity Concord. Obtain 5000 Unity Accolades through Records of Eminence objectives for a Partial Personal Evaluation of 5pt.',
+        },
+        special       = {
+          'Possesses increased Kick Attacks rate.',
+          'Exclusively uses Hollow Smite as his weaponskill. If called below level 50, he will not have a way to spend TP.',
+          'Uses Hollow Smite under any the following conditions: To open skillchains for the player when they have 1000 TP. To close a skillchain started by other party members if possible. When Maat (UC) has 3000 TP.',
+        },
+    },
+    ['Makki-Chebukki'] = {
+        job           = 'Ranger / Black Mage',
+        abilities     = 'Flashy Shot , Sharpshot , Barrage',
+        weapon_skills = 'Sidewinder / / , Empyreal Arrow / , Dulling Arrow / , Flaming Arrow /',
+        acquisition   = {
+          'Trade the Cipher: Makki item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Ochre)',
+        },
+        special       = {
+          'Possesses MP+100%, Store TP -40, Ranged Attacks: TP+100%',
+          'Will try to stay out of melee range.',
+          'Uses weapon skills at 2000 TP and does not try to skillchain.',
+          'During Lightsday, Makki-Chebukki will move out of range but take no other actions. As soon as the day changes he will resume fighting normally (resummoning is not necessary).',
+          'Gains 168 TP per attack.',
+        },
+    },
     ['Margret'] = {
         job           = 'Ranger / Thief',
         abilities     = 'Decoy Shot , Double Shot , Barrage , Sharpshot , Stealth Shot',
@@ -554,7 +1137,29 @@ return {
           'Gains 252 TP per attack.',
         },
     },
-    ['Matsui-P'] = {},   -- no BG-Wiki Cipher page found
+    ['Matsui-P'] = {
+        job           = 'Ninja / Black Mage',
+        spells        = 'Utsusemi: Ichi / Ni / San , Elemental Ninjutsu (San) , Single-target elemental nukes I , Burn , Migawari: Ichi , Kakka: Ichi , Myoshu: Ichi , Yurin: Ichi , Aisha: Ichi , Aspir , Stun',
+        abilities     = 'Innin , Sange , Elemental Seal , Futae , Mana Wall',
+        weapon_skills = '(1) Blade: Rin , (9) Blade: Retsu , (55) Blade: Ei , (60) Blade: Jin / , (66) Blade: Ten , (72) Blade: Ku / , (75) Blade: Kamu / , (85) Blade: Hi / , (91) Blade: Shun /',
+        acquisition   = {
+          'If you have completed the quest Trust: Windurst , Trust: Bastok , or Trust: San d\'Oria , you will automatically obtain the alter ego upon logging in. No message will be displayed signifying that you have acquired the alter ego.',
+          'If you have not completed the quest Trust: Windurst , Trust: Bastok , or Trust: San d\'Oria , you must first complete it and then relog or change areas. No message will be displayed signifying that you have acquired the alter ego.',
+        },
+        special       = {
+          'Prioritizes elemental ninjutsu and black magic spells.',
+          'Magic bursts skillchains with Ninjutsu tier San and elemental magic tier I enhanced by Futae .',
+          'Under specific conditions outlined below, uses weapon skills when the player reaches 1000 TP in order to open skillchains.',
+          'Has callouts in party chat, making him easy to use. Announces when his TP is 1000. Before using a weapon skill, he will announce the skillchain property you can follow up with for a Light or Darkness skillchain. You can see these callouts when the Chat Filter option for "Messages from alter egos" says OFF.',
+          'Casts Burn to lower enemy INT and prime them for Magical Damage .',
+          'Casts Stun to interrupt enemy TP moves, and reduces monster TP gain with Myoshu .',
+          'Generates TP rapidly with Daken , enhanced by Sange , though he often stops attacking to cast spells.',
+          'High accuracy and damage for a trust.',
+          'Prioritizes reapplying shadows and doesn\'t perform weaponskills if shadows are removed.',
+          'Skillchains: Once the player uses a Weapon Skill with Level 2 Skillchain Properties while Matsui-P is summoned, he will use weapon skills when the player has 1000 or more TP. He only starts skillchains that would create Light or Darkness skillchains with the previously used weapon skill. He has no Distortion weapon skills, so he has no reaction to players using Gravitation weapon skills. Holds TP until 3000 to open skillchains for the player. Uses a random weapon skill at 3000 TP if conditions are not met.',
+          'Matsui-P\'s skills and behavior were decided by the winner of the "Alter Ego Design Campaign – One Venturous Tarutaru!" competition. The development team made this comment on the contest entry: "This alter ego would be able deal lots of damage at once by using Ninjutsu to magic burst! Mana Wall doesn\'t seem possible due to the support job\'s level..." SE stated that any equipment would be cosmetic.',
+        },
+    },
     ['Maximilian'] = {
         job           = 'Thief / Ninja',
         weapon_skills = 'Fast Blade , Vorpal Blade / , Swift Blade',
@@ -587,7 +1192,22 @@ return {
           'Holds up to 2000 TP to wait for Climactic Flourish recast: does not try to skillchain.',
         },
     },
-    ['Mihli Aliapoh'] = {},   -- no BG-Wiki Cipher page found
+    ['Mihli Aliapoh'] = {
+        job           = 'White Mage / White Mage',
+        spells        = 'Cure I - VI , Protect/ra I - V , Shell/ra I - V , -na Spells , Slow , Paralyze',
+        abilities     = 'Afflatus Solace',
+        weapon_skills = 'True Strike / , Brainshaker , Hexa Strike , Scouring Bubbles (AoE) /',
+        acquisition   = {
+          'Trade the Cipher: Mihli item to one of the beginning Trust quest NPCs, which may be acquired via: Records of Eminence: Basic Tutorial Objective Reward Repeat Login Campaign Mog Pell (Ochre)',
+        },
+        special       = {
+          'Possesses Cure Potency Bonus +5%.',
+          'Possesses Healing Magic Skill +: estimated to be 500. Compared to other trusts, this translates to about another 5% increase to the base Cure and +2% Cursna success rate.',
+          'Prioritizes herself first with status removal.',
+          'Uses Cure spells on party members in orange HP (<50%) or asleep, with higher priority for the tank (<75%).',
+          'Uses TP randomly and does not try to skillchain. Prefers using Scouring Bubbles WS.',
+        },
+    },
     ['Mildaurion'] = {
         job           = 'Paladin / Samurai',
         weapon_skills = 'Light Blade / (Physical), Stellar Burst / (Magical), Great Wheel / (Physical AoE + Knockback), Vortex / (Magical:Wind)',
@@ -699,8 +1319,38 @@ return {
           'Firesday Night Fever (5 min cooldown, ~4 min duration) When her HP drops below 50%, uses Firesday Night Fever if it\'s available which fully recovers her HP and MP Has a pink sparkling aura No longer freely casts single target nukes. Only casts during magic burst using -ja spells or to cast Stun Will use her weapon skills in this order: Neo Crystal Jig -> Super Crusher Jig -> Eternal Vana Illusion-> Final Eternal Heart (aoe) Firesday Night Fever ends when she uses Final Eternal Heart* Firesday Night Fever lasts about 4 minutes, based on her low attack rate and TP gain *There is a glitch where if Mumor lands the finishing blow on an enemy with Final Eternal Heart: the aura does not stop, she no longer uses weapon skills, and cannot re-activate Firesday Night Fever to heal herself.',
         },
     },
-    ['Naja (UC)'] = {},   -- no BG-Wiki Cipher page found
-    ['Naja Salaheem'] = {},   -- no BG-Wiki Cipher page found
+    ['Naja (UC)'] = {
+        job           = 'Monk / Warrior',
+        weapon_skills = '(5) Peacebreaker / , (25) Hexa Strike , (50) Nott , (60) Black Halo / , (70) Justicebreaker /',
+        acquisition   = {
+          'Be a member of the Naja Salaheem Unity Concord. Obtain 5000 Unity Accolades through Records of Eminence objectives for a Partial Personal Evaluation of 5pt.',
+        },
+        special       = {
+          'Possesses Quadruple Attack , Triple Attack , Store TP , and Gilfinder traits.',
+          'On summoning will pick a club weapon skill from her list and use that exclusively, re-summoning her will randomize the choice of weapon skill again, in this way you can "pick" her weapon skill.',
+          '200 TP per hit.',
+          'Uses weapon skills when another party member has 1000 TP, otherwise holds TP indefinitely.',
+          'Her Multi-Attack rate is very high. She can be a great skillchain partner for other trusts or yourself.',
+          'But the damage is low to balance out the number of swings, and you may worry about feeding TP (Monster TP Gain) .',
+          'Peacebreaker applies a 20% Defense Down and 20% Magic Defense Down to the target for up to 30 seconds.',
+          'Justicebreaker applies a 10% Defense Down and 10% Magic Defense Down to the target for up to 60 seconds.',
+          'She has no MP so Nott only serves to restore her HP, which can make her very survivable if she has the required accuracy.',
+          'With another party member like Ajido-Marujido who builds but doesn\'t spend TP, you may get Naja to self-skillchain Darkness with Justicebreaker.',
+        },
+    },
+    ['Naja Salaheem'] = {
+        job           = 'Monk / Warrior',
+        abilities     = 'Focus , Dodge , Counterstance',
+        weapon_skills = 'True Strike / , Black Halo / , Hexa Strike , Peacebreaker /',
+        acquisition   = {
+          'Trade the Cipher: Naja item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Red) Mog Pell (Ochre)',
+        },
+        special       = {
+          'Peacebreaker is a single-target, low damage weaponskill with an additional effect of 20% Defense Down and 20% Magic Defense Down (lasts up to 30s).',
+          'Naja gains 100 TP per Hit.',
+          'Uses weapon skills at 1000 TP.',
+        },
+    },
     ['Najelith'] = {
         job           = 'Ranger / Ranger',
         abilities     = 'Barrage , Double Shot',
@@ -716,9 +1366,47 @@ return {
           'Tends to use Cyclone if allowed to weapon skill outside of a skillchain.',
         },
     },
-    ['Naji'] = {},   -- no BG-Wiki Cipher page found
-    ['Nanaa Mihgo'] = {},   -- no BG-Wiki Cipher page found
-    ['Nashmeira'] = {},   -- no BG-Wiki Cipher page found
+    ['Naji'] = {
+        job           = 'Warrior / Warrior',
+        abilities     = 'Provoke',
+        weapon_skills = 'Burning Blade , Red Lotus Blade / , Vorpal Blade /',
+        acquisition   = {
+          'Complete the initiation quest in Bastok .',
+        },
+        special       = {
+          'Uses weapon skills at 1000 TP, does not try to skillchain.',
+          'Provokes on cooldown.',
+        },
+    },
+    ['Nanaa Mihgo'] = {
+        job           = 'Thief / Thief',
+        abilities     = 'Despoil',
+        weapon_skills = 'Wasp Sting , Dancing Edge / , King Cobra Clamp (AoE) /',
+        acquisition   = {
+          'Complete the initiation quest in Windurst .',
+          'Must be Rank 3 or higher in any nation. Complete Mihgo\'s Amigo . After completing this quest, zone out and/or wait one game day. If you happen to pick up Rock Racketeer quest, then it means next visit to Nanaa Mihgo will be for the Trust of her. Speak with Nanaa Mihgo in Windurst Woods at (J-3).',
+        },
+        special       = {
+          'Possesses Treasure Hunter I',
+          'King Cobra Clamp stuns the target(s).',
+          'Despoil places the stolen item in the summoner\'s inventory.',
+          'Can be resummoned to reset the Despoil timer (5 minutes) after use.',
+          'Uses TP as soon as she gets it.',
+        },
+    },
+    ['Nashmeira'] = {
+        job           = 'Puppetmaster / White Mage',
+        spells        = '-na spells , Cure I - IV',
+        weapon_skills = 'Imperial Authority ( Stun ) /',
+        acquisition   = {
+          'Complete Eternal Mercenary . Examine the Imperial Whitegate in Aht Urhgan Whitegate (L-9).',
+        },
+        special       = {
+          'Possesses MP+70%',
+          'Uses Imperial Authority at 1000 TP.',
+          'Casts Cure on party members at low HP (<33%).',
+        },
+    },
     ['Nashmeira II'] = {
         job           = 'White Mage / Puppetmaster',
         spells        = 'Cure I - VI , Curaga I - V , -na spells , Erase',
@@ -765,8 +1453,37 @@ return {
           'Prefers Sixth Element .',
         },
     },
-    ['Pieuje (UC)'] = {},   -- no BG-Wiki Cipher page found
-    ['Prishe'] = {},   -- no BG-Wiki Cipher page found
+    ['Pieuje (UC)'] = {
+        job           = 'White Mage / Paladin',
+        spells        = 'Cure I - VI , -na Spells , Erase , Esuna , Protect/ra I - V , Shell/ra I - V , Auspice , Haste',
+        abilities     = 'Afflatus Misery , Sacrosanctity',
+        weapon_skills = '(5) Starlight , (25) Moonlight , (50) Nott',
+        acquisition   = {
+          'Be a member of the Pieuje Unity Concord. Obtain 5000 Unity Accolades through Records of Eminence objectives for a Partial Personal Evaluation of 5pt.',
+        },
+        special       = {
+          'Possesses Regain (34tp/tick), WHM/PLD traits including Auto Refresh and Resist Sleep .',
+          'Stays in place after engaging, but will attack with a club if the enemy is nearby. When positioned in attack range, he\'ll be able to use MP recovery moves more often, making up for his lower max MP compared to Tarutaru trusts.',
+          'Afflatus Misery and Auspice together give him an Enlight effect, increasing his accuracy.',
+          'Will use Esuna in Misery stance, removing 2 debuffs from himself and any other party members in range with the same debuff.',
+          'Casts Haste on players regardless of job.',
+          'Sacrosanctity defends your party from enemy SP abilities like Manafont , Chainspell , and Astral Flow .',
+          'Uses TP for MP recovery. Prefers Nott .',
+        },
+    },
+    ['Prishe'] = {
+        job           = 'Monk / White Mage',
+        spells        = 'Cure I - IV',
+        weapon_skills = 'Knuckle Sandwich ( damage) / , Nullifying Dropkick / / , Auroral Uppercut ( damage) /',
+        acquisition   = {
+          'Complete Dawn , including the final cutscene in Lufaise Meadows . Examine the Walnut Door in Tavnazian Safehold (K-7, Top floor).',
+        },
+        special       = {
+          'Possesses HP-5%, MP+75%',
+          'Will only cast Cure when a party member is at very low health.',
+          'Uses TP as soon as she gets it.',
+        },
+    },
     ['Prishe II'] = {
         job           = 'White Mage / Monk',
         spells        = 'Curaga I - V',
@@ -852,7 +1569,19 @@ return {
           'Uses weapon skills at 2000 TP. Does not try to skillchain. Null Blast - Converts damage dealt to MP. Additional effect: Magic evasion down.',
         },
     },
-    ['Romaa Mihgo'] = {},   -- no BG-Wiki Cipher page found
+    ['Romaa Mihgo'] = {
+        job           = 'Thief / Warrior',
+        abilities     = 'Feint , Aura Steal , Sneak Attack , Trick Attack',
+        weapon_skills = 'Fast Blade , Vorpal Blade / , Savage Blade / , Cobra Clamp (Conal AoE, Stun, Paralyze) /',
+        acquisition   = {
+          'Be in possession of the Bundle of scrolls key item. Complete At Journey\'s End . Speak with Romaa Mihgo in Windurst Waters (S) (G-11).',
+        },
+        special       = {
+          'Will use Aura Steal to take buffs off mobs. This can Steal items also, which will be added to the player\'s inventory.',
+          'Will only use Trick Attack and Sneak Attack when positioned correctly with the player, does not try to combine with weapon skills.',
+          'Uses TP as soon as she gets it.',
+        },
+    },
     ['Rongelouts'] = {
         job           = 'Warrior / Warrior',
         abilities     = 'Berserk , Aggressor , Warcry',
@@ -932,8 +1661,37 @@ return {
           'Is treated as a Paladin: Does not use Paladin abilities, but impacts behavior of trust supports or off-tanks like Ark HM and behavior of certain enemies like Bozetto Necronura .',
         },
     },
-    ['Semih Lafihna'] = {},   -- no BG-Wiki Cipher page found
-    ['Shantotto'] = {},   -- no BG-Wiki Cipher page found
+    ['Semih Lafihna'] = {
+        job           = 'Ranger / Warrior',
+        abilities     = 'Sharpshot , Barrage , Stealth Shot , Double Shot',
+        weapon_skills = 'Sidewinder / / , Arching Arrow , Stellar Arrow / (AoE), Lux Arrow /',
+        acquisition   = {
+          'Trade the Cipher: Semih item to one of the beginning Trust quest NPCs, which may be acquired via: Speak to Kupipi in Heavens Tower during Mission 2-3 for any nation ( Journey Abroad / The Emissary / The Three Kingdoms ). Alternatively speak to Kupipi in Heavens Tower once the Rhapsodies of Vanadiel Mission 1-7 (The Path Untraveled) is complete.',
+        },
+        special       = {
+          'Possesses Store TP +40, Ranged Attacks: TP+100%',
+          'Will try to stay out of melee range.',
+          'Semih Lafihna will hold up to 2000 TP to try to close skillchains.',
+          'Lux Arrow and Stellar Arrow are both able to close Tier 3 skillchains and can close double tier 3 skillchains as well.',
+          'Exercise caution when using Semih around multiple foes as Stellar Arrow is an AoE attack centered around its target.',
+          'She is an extremely strong trust to use while leveling up due to her access to Sidewinder and Arching Arrow at low levels.',
+          'Sidewinder is her best WS for damage, use Lux Arrow for Defense Down , Stellar Arrow for Evasion Down .',
+          'Gains 252 TP per hit.',
+        },
+    },
+    ['Shantotto'] = {
+        job           = 'Black Mage / Black Mage',
+        spells        = 'Single-target elemental nukes I - V',
+        acquisition   = {
+          'Complete the initiation quest in San d’Oria , Bastok , and Windurst .',
+          'Have obtained the following Trust spells: Kupipi , Nanaa Mihgo , Ajido-Marujido , Excenmille , Curilla , Trion , Ayame , Naji , & Volker Complete Curses, Foiled A-Golem!? . Speak to Shantotto in Windurst Walls at (K-7).',
+        },
+        special       = {
+          'When Shantotto draws hate, she will stop casting until the enemy attacks someone else.',
+          'Shantotto will use the highest tier of elemental magic she can access by default.',
+          'If fighting a weaker enemy or an enemy at low HP, Shantotto will use use lower tier spells in order to conserve her MP.',
+        },
+    },
     ['Shantotto II'] = {
         job           = 'Black Mage / White Mage',
         spells        = 'Single-target elemental nukes I',
@@ -958,9 +1716,57 @@ return {
           'Doctor\'s Orders - Damage.',
         },
     },
-    ['Shikaree Z'] = {},   -- no BG-Wiki Cipher page found
-    ['Star Sibyl'] = {},   -- no BG-Wiki Cipher page found
-    ['Sylvie (UC)'] = {},   -- no BG-Wiki Cipher page found
+    ['Shikaree Z'] = {
+        job           = 'Dragoon / White Mage',
+        spells        = 'Cure I - IV , Haste , -na Spells , Erase .',
+        abilities     = 'Jump , High Jump , Super Jump , Ancient Circle',
+        weapon_skills = 'Raiden Thrust / , Skewer / , Wheeling Thrust , Impulse Drive /',
+        acquisition   = {
+          'Complete Three Paths . Speak to Perih Vashai in Windurst Woods (K-7) Note: you must have the Windurst Trust Permit. If you are on some Promathia Missions after 5-3 (8-2 for sure) you will not be able to acquire this trust until completing those missions.',
+        },
+        special       = {
+          'Possesses HP-10%, MP+100%',
+          'Uses Ancient Circle if the enemy is a dragon',
+          'Super Jump is used when ShikareeZ is in the top enmity slot',
+          'Gains 205 TP on hit; has high TP return on Jump (655 TP) and High Jump (1065 TP).',
+          'Holds TP to 2000 to try to close skillchains.',
+          'Saves Cure for party members under 50% HP or affected by Sleep',
+          'Prioritizes Haste over other spells, except to cast Erase when Slow would prevent Haste .',
+        },
+    },
+    ['Star Sibyl'] = {
+        job           = 'Geomancer / Bard',
+        spells        = 'None',
+        abilities     = 'None',
+        weapon_skills = 'None',
+        acquisition   = {
+          'Trade the Cipher: S. Sibyl item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Red) Mog Pell (Ochre)',
+        },
+        special       = {
+          'Has full time Indi-Acumen (Magic Attack Boost). +19 at level 99.',
+          'This sphere effect also has a +19 Magic Accuracy boost at level 99.',
+        },
+    },
+    ['Sylvie (UC)'] = {
+        job           = 'Geomancer / White Mage',
+        spells        = 'Cure I - IV , -na Spells , Erase , Haste , Indi-Haste , Indi-Fury , Indi-Precision , Indi-Refresh , Indi-Regen , Indi-Acumen , Indi-Languor',
+        abilities     = 'Entrust',
+        weapon_skills = '(50) Nott',
+        acquisition   = {
+          'Be a member of the Sylvie Unity Concord. Obtain 5000 Unity Accolades through Records of Eminence objectives for a Partial Personal Evaluation of 5pt.',
+        },
+        special       = {
+          'Possesses Regain +50, Damage Taken -25%, Enhanced Indicolure duration (6 minutes total, includes Entrust effects).',
+          'Will change Indicolure spells based on accuracy requirements, and the main job of the player.',
+          'Does not melee or cast spells on enemies, relying on Regain for TP.',
+          'Follows the player or trust in front of her in the party lineup.',
+          'Casts Haste on the player who summoned her (regardless of job) and any physical melee damage dealers in the party.',
+          'Uses Entrust on the player unless their main job is GEO where she will Entrust the first PLD, RUN, or NIN in the party instead. Even if the player\'s Entrust is on that target, Sylvie will overwrite it with her Entrust.',
+          'Will cast Indicolure spells based on the player\'s job and hit rate, ranged hit rate, or item level:',
+          'Below level 93, Sylvie won\'t use any of the above Indi- spells until everything\'s available, regardless of your job. (i.e., she is waiting until Indi-Haste \'s level, whether you need it or not) Indi-Regen available at Level 20. Provides about level÷3 hp/tick, reaching the maximum +30hp @ 89. About equivalent potency to the highest level Regen Spells available. Indi-Refresh available at Level 30. Used instead of Indi-Regen if your main job has MP: WHM , RDM , BLM , SCH , SMN , GEO , PLD , RUN , BLU , DRK . Provides +2mp @ 32, +3mp @ 58, +4mp @ 84, +5mp @ 98. Gains Geomancy +3 at level 99.',
+          'Uses TP to recover MP.',
+        },
+    },
     ['Tenzen'] = {
         job           = 'Samurai / Samurai',
         abilities     = 'Hasso , Save TP (400), Meditate , Hagakure , Third Eye',
@@ -1009,8 +1815,39 @@ return {
           'Only uses his elemental magic to magic burst.',
         },
     },
-    ['Trion'] = {},   -- no BG-Wiki Cipher page found
-    ['Uka Totlihn'] = {},   -- no BG-Wiki Cipher page found
+    ['Trion'] = {
+        job           = 'Paladin / Warrior',
+        spells        = 'Cure I - IV , Flash',
+        abilities     = 'Provoke , Sentinel',
+        weapon_skills = 'Red Lotus Blade / , Savage Blade / , Royal Bash ( Shield Bash ) , Royal Savior ( Palisade , Sentinel , Stoneskin )',
+        acquisition   = {
+          'Complete the initiation quest in San d’Oria .',
+          'Must be Rank 6 or higher in any nation. Examine the "Door: Prince Royal’s Room" in Chateau d\'Oraguille at (H-7).',
+        },
+        special       = {
+          'Royal Bash is stronger than a normal Shield Bash . Royal Saviour is a secondary, stronger version of Sentinel . Trion alternates between this and the normal version of Sentinel.',
+          'Trion tries to interrupt TP-abilities with Royal Bash.',
+          'Uses TP randomly and does not try to skillchain.',
+          'With his two defensive TP moves, he\'s not likely to interrupt skillchains much.',
+        },
+    },
+    ['Uka Totlihn'] = {
+        job           = 'Dancer / Warrior',
+        abilities     = 'Quickstep , Drain Samba / II / III , Reverse Flourish , Haste Samba , Curing Waltz I - V , Healing Waltz',
+        weapon_skills = 'Judgment',
+        acquisition   = {
+          'Trade the Cipher: Uka item to one of the beginning Trust quest NPCs, which may be acquired via: Repeat Login Campaign Mog Pell (Red) Mog Pell (Ochre)',
+        },
+        special       = {
+          'Heals party members with Curing Waltzes when they\'re below 66% HP.',
+          'Builds finishing moves using Quickstep and expends them on Reverse Flourish to gain TP.',
+          'Once Quickstep is at daze lv.5, only re-applies it when it\'s <10s from expiring.',
+          'Uses Reverse Flourish only with 5 finishing moves and when TP is low.',
+          'When above 2000 TP, uses Judgment . Does not try to skillchain.',
+          'Has Healing Waltz but only removes status effects from herself.',
+          'Uses Haste Samba when another party member is on a main job with access to Cure (WHM,RDM,SCH,PLD) or when the enemy is undead, otherwise uses Drain Samba .',
+        },
+    },
     ['Ullegore'] = {
         job           = 'Black Mage / Dark Knight',
         spells        = 'Single-target elemental nukes I - V , Comet , Stun',
@@ -1029,7 +1866,23 @@ return {
           'Uses a unique attack Bored to Tears, which is accompanied by a message stating that "The <target> has become noticeably bored"; This applies a Slow less potent than Slow II',
         },
     },
-    ['Ulmia'] = {},   -- no BG-Wiki Cipher page found
+    ['Ulmia'] = {
+        job           = 'Bard / Bard',
+        spells        = 'Sword/Blade Madrigal , Hunter\'s/Archer\'s Prelude , Advancing/Victory March , Valor Minuet I - V , Mage\'s Ballad I - III , Sentinel\'s Scherzo',
+        abilities     = 'Pianissimo',
+        acquisition   = {
+          'Complete Dawn . Examine the Dilapidated Gate in Misareaux Coast (I-11). Please note that there are two Dilapidated Gates in the zone.',
+        },
+        special       = {
+          'Does not engage.',
+          'Recasts her songs shortly before they wear off.',
+          'Song Priority: Ballad : Based on party composition, rate of MP usage, and a target party member\'s remaining MP percentage (details below). March : Unless another Bard is providing them, Victory March and Advancing March . Madrigal : Unless another Bard is providing them, Blade Madrigal and Sword Madrigal . Minuet : when both Marches and Madrigals are performed by other Bards, plays the highest level Valor Minuets not currently on the party.',
+          'Pianissimo will be used for the player under certain conditions after Ulmia has two songs on the party. Scherzo after taking a large amount of damage, or afflicted with the Weakness status. Ballad if the player\'s MP is under 75% and main job is WHM, BLM, RDM, SMN, GEO, or SCH. Prelude and Minuet if main job is RNG or COR.',
+          'Ballad logic: Ulmia tracks rate of MP usage to determine the target party member spending the highest percentage of their MP. ( [1] BG-Forum)( Official explanation - In Japanese ) It is possible for all party members to be at low MP and double Marches are still being played, due to failing this MP consumption check. You can try forcing yourself to be the ballad target by resummoning Ulmia then pulling with a spell. Cast Ballad if target party member\'s MP is below a certain threshold: 75% if 3 or more party members (out of 6) have native MP, based on main and sub job. 33% if 2 or fewer party members (out of 6) have native MP. Can do double Ballads, depending on MP and timing of 2nd song expiration.',
+          '* Advancing March grants 108/1024 Magical Haste.',
+          '* Victory March grants 155/1024 Magical Haste.',
+        },
+    },
     ['Valaineral'] = {
         job           = 'Paladin / Warrior',
         spells        = 'Cure I - IV , Flash , Protect IV - V , Reprisal , Enlight , Phalanx',
@@ -1049,10 +1902,68 @@ return {
           'Uses weapon skills randomly around 2000 TP and does not try to close skillchains.',
         },
     },
-    ['Volker'] = {},   -- no BG-Wiki Cipher page found
-    ['Ygnas'] = {},   -- no BG-Wiki Cipher page found
-    ['Yoran-Oran (UC)'] = {},   -- no BG-Wiki Cipher page found
-    ['Zazarg'] = {},   -- no BG-Wiki Cipher page found
+    ['Volker'] = {
+        job           = 'Warrior / Warrior',
+        abilities     = 'Aggressor , Berserk , Defender , Provoke , Retaliation , Warrior\'s Charge , Warcry',
+        weapon_skills = 'Berserk-Ruf (Attack Boost) , Fast Blade , Savage Blade / , Spirits Within , Vorpal Blade / ,',
+        acquisition   = {
+          'Complete the initiation quest in Bastok .',
+          'Must be Rank 6 or higher in any nation. Speak to Lucius in the Metalworks at (I-9).',
+        },
+        special       = {
+          'If there is a NIN, PLD, or RUN in the party, behaves as a damage dealer: Uses Aggressor , Berserk .',
+          'If there are no other tanks in the party, behaves as a tank: Uses Defender , Retaliation .',
+          'Uses Provoke in either role to maintain enmity as a tank or off-tank.',
+          'Uses weapon skills at 2000 TP with Warrior\'s Charge if it\'s available; does not try to skillchain.',
+        },
+    },
+    ['Ygnas'] = {
+        job           = 'White Mage / Paladin',
+        spells        = 'Cure I - VI , Protect/ra I - V , Shell/ra I - V , -na Spells , Erase , Haste',
+        weapon_skills = 'Deific Gambol (AoE) , Phototropic Blessing , Phototropic Wrath , Sacred Caper',
+        acquisition   = {
+          'Complete The Ygnas Directive and then The Arciela Directive Records of Eminence Objectives. Examine the Sandy Overlook in Ceizak Battlegrounds (J-10) after fulfilling the other prerequisites.',
+        },
+        special       = {
+          'Possesses HP+10%, MP+10%, Cure Potency +50%, Fast Cast +50%, Converts 5% of "Cure" amount to MP, Regain (30 TP/tick). MP cost reduction can be over 50% for Cure III and over 30% for Cure VI before Day/Weather / Cure Potency Received + bonuses.',
+          'Ygnas prefers to heal with his most mp-efficient healing spell, which is Cure III at level 99. Uses Cure III on the tank at yellow HP(<75%) or other party members at orange HP(<66%). Uses Cure VI on party members at low HP (<45%).',
+          'Can be intimidated when curing party members who have Plantoid Killer .',
+          'Will not engage, and stands out of range.',
+          'Will not use a weaponskill until reaching 3,000 TP unless party members have taken damage, much like Selh\'teus. Deific Gambol causes AoE Damage. Phototropic Blessing is an AoE Heal, 30/tick Regen, +25% Defense, and MDB+ for 60 seconds. Phototrophic Wrath is an AoE Haste II , attack +25%, MAB + , and 23 damage Enlight (decays by 1 each hit) for 60 seconds. Sacred Caper inflicts damage and Rasp.',
+        },
+    },
+    ['Yoran-Oran (UC)'] = {
+        job           = 'White Mage / Black Mage',
+        spells        = 'Protectra I - V , Shellra I - V , -na spells , Cure I - VI , Erase , Stoneskin',
+        abilities     = 'Afflatus Solace',
+        weapon_skills = '(50) Nott',
+        acquisition   = {
+          'Be a member of the Yoran-Oran Unity Concord. Obtain 5000 Unity Accolades through Records of Eminence objectives for a Partial Personal Evaluation of 5pt.',
+        },
+        special       = {
+          'Possesses Cure Potency Bonus +50%, Fast Cast , Regain (50/tick).',
+          'Depending on Unity rank: MP+15%~+25%',
+          'Does not melee or cast spells on enemies, relying on Regain for TP.',
+          'Uses TP to recover MP. It is a low priority, and at 3000 TP he may continue casting Cure until he is out of MP.',
+          'Very high magic evasion for a trust. Will occasionally sleep but avoids silence and other enfeebles with a very high success rate.',
+          'Is very mana efficient thanks to Afflatus Solace , Conserve MP , and capped Cure Potency .',
+          'Tries to keep himself buffed with Stoneskin .',
+          'Stays at a distance from enemies while healing.',
+        },
+    },
+    ['Zazarg'] = {
+        job           = 'Monk / Monk',
+        abilities     = 'Focus',
+        weapon_skills = 'Howling Fist / , Dragon Kick , Asuran Fists / , Meteoric Impact /',
+        acquisition   = {
+          'Complete Fist of the People . Speak with Fari-Wari in Aht Urhgan Whitegate (K-12).',
+        },
+        special       = {
+          'Uses the unique weapon skill Meteoric Impact.',
+          'Focuses when needed based on high enemy evasion.',
+          'Uses TP as soon as he gets it.',
+        },
+    },
     ['Zeid'] = {
         job           = 'Dark Knight / Dark Knight',
         spells        = 'Absorb spells (Includes Absorb-Attri and Absorb-TP ), Endark , Drain/Aspir I/II , Stun',

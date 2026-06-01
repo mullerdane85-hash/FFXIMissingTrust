@@ -266,36 +266,66 @@ return {
     ['Gain-STR'] = 'BCNM / Vendor / Drop',
     ['Gain-VIT'] = 'Vendor / Drop',
     ['Gekka: Ichi'] = 'Vendor',
-    ['Geo-Acumen'] = 'Vendor',
-    ['Geo-AGI'] = 'Vendor',
-    ['Geo-Attunement'] = 'Vendor',
-    ['Geo-Barrier'] = 'Vendor',
-    ['Geo-CHR'] = 'Vendor',
-    ['Geo-DEX'] = 'Vendor',
-    ['Geo-Fade'] = 'Vendor',
-    ['Geo-Fend'] = 'Vendor',
-    ['Geo-Focus'] = 'Vendor',
-    ['Geo-Frailty'] = 'Vendor',
-    ['Geo-Fury'] = 'Vendor',
-    ['Geo-Gravity'] = 'Vendor',
-    ['Geo-Haste'] = 'Vendor',
-    ['Geo-INT'] = 'Vendor',
-    ['Geo-Languor'] = 'Vendor',
-    ['Geo-Malaise'] = 'Vendor',
-    ['Geo-MND'] = 'Vendor',
-    ['Geo-Paralysis'] = 'Vendor',
-    ['Geo-Poison'] = 'Vendor',
-    ['Geo-Precision'] = 'Vendor',
-    ['Geo-Refresh'] = 'Vendor',
-    ['Geo-Regen'] = 'Vendor',
-    ['Geo-Slip'] = 'Vendor',
-    ['Geo-Slow'] = 'Vendor',
-    ['Geo-STR'] = 'Vendor',
-    ['Geo-Torpor'] = 'Vendor',
-    ['Geo-Vex'] = 'Vendor',
-    ['Geo-VIT'] = 'Vendor',
-    ['Geo-Voidance'] = 'Vendor',
-    ['Geo-Wilt'] = 'Vendor',
+    -- Geo-Acumen: GEO lv 50 | Reservoir in Beaucedine Glacier (J-6) | needs Indi-Acumen
+    ['Geo-Acumen'] = 'Geomantic Reservoir [ Beaucedine Glacier (J-6) ] - lv 50, requires Indi-Acumen',
+    -- Geo-AGI: GEO lv 43 | Reservoir in Castle Oztroja (H-8) | needs Indi-AGI
+    ['Geo-AGI'] = 'Geomantic Reservoir [ Castle Oztroja (H-8) ] - lv 43, requires Indi-AGI',
+    -- Geo-Attunement: GEO lv 20 | Reservoir in Qufim Island (I-9) | needs Indi-Attunement
+    ['Geo-Attunement'] = 'Geomantic Reservoir [ Qufim Island (I-9) ] - lv 20, requires Indi-Attunement',
+    -- Geo-Barrier: GEO lv 32 | Reservoir in Batallia Downs (D-7) | needs Indi-Barrier
+    ['Geo-Barrier'] = 'Geomantic Reservoir [ Batallia Downs (D-7) ] - lv 32, requires Indi-Barrier',
+    -- Geo-CHR: GEO lv 34 | Reservoir in Lower Delkfutt's Tower (E-8) | needs Indi-CHR
+    ['Geo-CHR'] = 'Geomantic Reservoir [ Lower Delkfutt\'s Tower (E-8) ] - lv 34, requires Indi-CHR',
+    -- Geo-DEX: GEO lv 49 | Reservoir in Behemoth's Dominion (E-8) | needs Indi-DEX
+    ['Geo-DEX'] = 'Geomantic Reservoir [ Behemoth\'s Dominion (E-8) ] - lv 49, requires Indi-DEX',
+    -- Geo-Fade: GEO lv 98 | Reservoir in Morimar Basalt Fields (G-8) | needs Indi-Fade
+    ['Geo-Fade'] = 'Geomantic Reservoir [ Morimar Basalt Fields (G-8) ] - lv 98, requires Indi-Fade',
+    -- Geo-Fend: GEO lv 44 | Reservoir in Davoi (J-11) | needs Indi-Fend
+    ['Geo-Fend'] = 'Geomantic Reservoir [ Davoi (J-11) ] - lv 44, requires Indi-Fend',
+    -- Geo-Focus: GEO lv 26 | Reservoir in Gusgen Mines (G-8) | needs Indi-Focus
+    ['Geo-Focus'] = 'Geomantic Reservoir [ Gusgen Mines (G-8) ] - lv 26, requires Indi-Focus',
+    -- Geo-Frailty: GEO lv 80 | Reservoir in Ceizak Battlegrounds (F-8) | needs Indi-Frailty
+    ['Geo-Frailty'] = 'Geomantic Reservoir [ Ceizak Battlegrounds (F-8) ] - lv 80, requires Indi-Frailty',
+    -- Geo-Fury: GEO lv 38 | Reservoir in Sauromugue Champaign (K-6) | needs Indi-Fury
+    ['Geo-Fury'] = 'Geomantic Reservoir [ Sauromugue Champaign (K-6) ] - lv 38, requires Indi-Fury',
+    -- Geo-Gravity: GEO lv 92 | Reservoir in Foret de Hennetiel (I-7) | needs Indi-Gravity
+    ['Geo-Gravity'] = 'Geomantic Reservoir [ Foret de Hennetiel (I-7) ] - lv 92, requires Indi-Gravity',
+    -- Geo-Haste: GEO lv 97 | Reservoir in Marjami Ravine (J-6) | needs Indi-Haste
+    ['Geo-Haste'] = 'Geomantic Reservoir [ Marjami Ravine (J-6) ] - lv 97, requires Indi-Haste',
+    -- Geo-INT: GEO lv 40 | Reservoir in Beaucedine Glacier (H-9) | needs Indi-INT
+    ['Geo-INT'] = 'Geomantic Reservoir [ Beaucedine Glacier (H-9) ] - lv 40, requires Indi-INT',
+    -- Geo-Languor: GEO lv 68 | Reservoir in Bostaunieux Oubliette (I-11) | needs Indi-Languor
+    ['Geo-Languor'] = 'Geomantic Reservoir [ Bostaunieux Oubliette (I-11) ] - lv 68, requires Indi-Languor',
+    -- Geo-Malaise: GEO lv 92 | Reservoir in Morimar Basalt Fields (J-6) | needs Indi-Malaise
+    ['Geo-Malaise'] = 'Geomantic Reservoir [ Morimar Basalt Fields (J-6) ] - lv 92, requires Indi-Malaise',
+    -- Geo-MND: GEO lv 37 | Reservoir in Rolanberry Fields (J-10) | needs Indi-MND
+    ['Geo-MND'] = 'Geomantic Reservoir [ Rolanberry Fields (J-10) ] - lv 37, requires Indi-MND',
+    -- Geo-Paralysis: GEO lv 72 | Reservoir in Fei'Yin (H-5) | needs Indi-Paralysis
+    ['Geo-Paralysis'] = 'Geomantic Reservoir [ Fei\'Yin (H-5) ] - lv 72, requires Indi-Paralysis',
+    -- Geo-Poison: GEO lv 5 | Reservoir in East Ronfaure (I-7) | needs Indi-Poison
+    ['Geo-Poison'] = 'Geomantic Reservoir [ East Ronfaure (I-7) ] - lv 5, requires Indi-Poison',
+    -- Geo-Precision: GEO lv 14 | Reservoir in Konschtat Highlands (F/G-6) | needs Indi-Precision
+    ['Geo-Precision'] = 'Geomantic Reservoir [ Konschtat Highlands (F/G-6) ] - lv 14, requires Indi-Precision',
+    -- Geo-Refresh: GEO lv 34 | Reservoir in La Theine Plateau (H-10) | needs Indi-Refresh
+    ['Geo-Refresh'] = 'Geomantic Reservoir [ La Theine Plateau (H-10) ] - lv 34, requires Indi-Refresh',
+    -- Geo-Regen: GEO lv 19 | Reservoir in La Theine Plateau (J/K-5) | needs Indi-Regen
+    ['Geo-Regen'] = 'Geomantic Reservoir [ La Theine Plateau (J/K-5) ] - lv 19, requires Indi-Regen',
+    -- Geo-Slip: GEO lv 62 | Reservoir in The Eldieme Necropolis (J-11) | needs Indi-Slip
+    ['Geo-Slip'] = 'Geomantic Reservoir [ The Eldieme Necropolis (J-11) ] - lv 62, requires Indi-Slip',
+    -- Geo-Slow: GEO lv 52 | Reservoir in Beadeaux (K-8) | needs Indi-Slow
+    ['Geo-Slow'] = 'Geomantic Reservoir [ Beadeaux (K-8) ] - lv 52, requires Indi-Slow',
+    -- Geo-STR: GEO lv 52 | Reservoir in Crawlers' Nest (F-6) | needs Indi-STR
+    ['Geo-STR'] = 'Geomantic Reservoir [ Crawlers\' Nest (F-6) ] - lv 52, requires Indi-STR',
+    -- Geo-Torpor: GEO lv 56 | Reservoir in Xarcabard (F-7) | needs Indi-Torpor
+    ['Geo-Torpor'] = 'Geomantic Reservoir [ Xarcabard (F-7) ] - lv 56, requires Indi-Torpor',
+    -- Geo-Vex: GEO lv 74 | Reservoir in Upper Delkfutt's Tower (G-7) | needs Indi-Vex
+    ['Geo-Vex'] = 'Geomantic Reservoir [ Upper Delkfutt\'s Tower (G-7) ] - lv 74, requires Indi-Vex',
+    -- Geo-VIT: GEO lv 46 | Reservoir in Garlaige Citadel (H-9) | needs Indi-VIT
+    ['Geo-VIT'] = 'Geomantic Reservoir [ Garlaige Citadel (H-9) ] - lv 46, requires Indi-VIT',
+    -- Geo-Voidance: GEO lv 8 | Reservoir in Tahrongi Canyon (H/I-7) | needs Indi-Voidance
+    ['Geo-Voidance'] = 'Geomantic Reservoir [ Tahrongi Canyon (H/I-7) ] - lv 8, requires Indi-Voidance',
+    -- Geo-Wilt: GEO lv 86 | Reservoir in Yahse Hunting Grounds (K-7) | needs Indi-Wilt
+    ['Geo-Wilt'] = 'Geomantic Reservoir [ Yahse Hunting Grounds (K-7) ] - lv 86, requires Indi-Wilt',
     ['Geohelix'] = 'Vendor',
     ['Geohelix II'] = 'Job Point Prog',
     ['Goblin Gavotte'] = 'Vendor',

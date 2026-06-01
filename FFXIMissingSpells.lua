@@ -82,6 +82,15 @@ local dice_info = require('libs/dice_info')
 -- panel that mirrors the BG-Wiki layout.
 local blu_info = require('libs/blu_info')
 
+-- Auto-generated spell info for ALL learnable spells (BG-Wiki
+-- Category:Spells, ~773 entries). Per spell: description, type, skill,
+-- element, target, notes, dropped_from (monster + level + zone + rate
+-- + notes), purchased_from (npc + zone + notes). Used by every non-COR
+-- non-TRUST job tab to render a structured info panel on click. The
+-- BLU tab still prefers blu_info first for the Stat Bonus / Creates
+-- Job Trait fields BLU spells uniquely have.
+local spell_info = require('libs/spell_info')
+
 -- Helper: short tag for a spell name. Tries the curated extras first,
 -- then the CSV-derived short table, then derives a BLU family name
 -- from the full-detail text if the spell is a Blue Magic learn, then
@@ -1289,6 +1298,101 @@ local function build_blu_info_lines(name)
     return out
 end
 
+-- =====================================================================
+-- Generic spell right-panel renderer (libs/spell_info.lua)
+-- =====================================================================
+-- Used by every non-COR non-TRUST job tab. Renders the BG-Wiki spell
+-- layout the user requested:
+--   <Spell name>                              (yellow)
+--   ---
+--   Description / Type / Skill / Element / Target / Notes /
+--   Dropped from (monster + zone + notes) /
+--   Purchased from (NPC + zone + notes).
+local function build_spell_info_lines(name)
+    local out = {}
+    local info = spell_info[name]
+    if not info then
+        table.insert(out, '\\cs(255,220,140)' .. name .. '\\cr')
+        table.insert(out, '\\cs(180,180,180)(no detailed wiki info available)\\cr')
+        return out
+    end
+
+    table.insert(out, '\\cs(255,220,140)' .. name .. '\\cr')
+    table.insert(out, '')
+
+    local function emit_field(label, value)
+        if not value or value == '' then return end
+        table.insert(out, '\\cs(150,220,255)' .. label .. ':\\cr')
+        for _, l in ipairs(wrap_line('  ' .. value, TOOLTIP_WIDTH_CHARS)) do
+            table.insert(out, l)
+        end
+    end
+
+    emit_field('Description', info.description)
+    emit_field('Type',        info.type)
+    emit_field('Skill',       info.skill)
+    emit_field('Element',     info.element)
+    emit_field('Target',      info.target)
+
+    -- Notes (bullet list)
+    if info.notes and #info.notes > 0 then
+        table.insert(out, '')
+        table.insert(out, '\\cs(150,220,255)Notes:\\cr')
+        for _, note in ipairs(info.notes) do
+            for _, l in ipairs(wrap_line('  - ' .. note, TOOLTIP_WIDTH_CHARS)) do
+                table.insert(out, l)
+            end
+        end
+    end
+
+    -- Dropped from: monster + zone + notes per row
+    if info.dropped_from and #info.dropped_from > 0 then
+        table.insert(out, '')
+        table.insert(out, '\\cs(150,220,255)Dropped from:\\cr')
+        for _, row in ipairs(info.dropped_from) do
+            local head = '  - ' .. (row.monster or '')
+            if row.level and row.level ~= '' then
+                head = head .. '  ·  Lv ' .. row.level
+            end
+            for _, l in ipairs(wrap_line(head, TOOLTIP_WIDTH_CHARS)) do
+                table.insert(out, l)
+            end
+            if row.zone and row.zone ~= '' then
+                for _, l in ipairs(wrap_line('      ' .. row.zone, TOOLTIP_WIDTH_CHARS)) do
+                    table.insert(out, l)
+                end
+            end
+            if row.notes and row.notes ~= '' then
+                for _, l in ipairs(wrap_line('      ' .. row.notes, TOOLTIP_WIDTH_CHARS)) do
+                    table.insert(out, l)
+                end
+            end
+        end
+    end
+
+    -- Purchased from: NPC + zone + notes
+    if info.purchased_from and #info.purchased_from > 0 then
+        table.insert(out, '')
+        table.insert(out, '\\cs(150,220,255)Purchased from:\\cr')
+        for _, row in ipairs(info.purchased_from) do
+            local head = '  - ' .. (row.npc or '')
+            if row.zone and row.zone ~= '' then
+                head = head .. '  ·  ' .. row.zone
+            end
+            for _, l in ipairs(wrap_line(head, TOOLTIP_WIDTH_CHARS)) do
+                table.insert(out, l)
+            end
+            if row.notes and row.notes ~= '' then
+                for _, l in ipairs(wrap_line('      ' .. row.notes, TOOLTIP_WIDTH_CHARS)) do
+                    table.insert(out, l)
+                end
+            end
+        end
+    end
+
+    return out
+end
+
 -- Convert a raw CSV detail string into a tooltip-friendly multi-line text:
 -- each acquisition method gets its own labelled header line, with its
 -- details on indented bullet lines below. BLU spells get a custom layout
@@ -1685,12 +1789,18 @@ local function build_window()
         -- and render Description / Purchased from / Obtained from.
         full_lines = build_die_info_lines(sel)
     elseif is_blu_tab() and blu_info[sel] then
-        -- BLU tab: when the clicked spell exists in libs/blu_info.lua,
-        -- render the structured Description / Target / Stat Bonus /
-        -- Creates Trait / Notes / Spell Obtainment panel. Spells that
-        -- don't have a wiki entry fall through to the generic
-        -- acquisition_full path below.
+        -- BLU tab prefers blu_info first because it carries Stat Bonus +
+        -- Creates Job Trait fields the generic Category:Spells scrape
+        -- doesn't have. BLU spells missing from blu_info fall through
+        -- to the generic spell_info path below.
         full_lines = build_blu_info_lines(sel)
+    elseif spell_info[sel] then
+        -- Every other job tab: render the structured Description / Type
+        -- / Skill / Element / Target / Notes / Dropped from / Purchased
+        -- from panel built from libs/spell_info.lua (BG-Wiki
+        -- Category:Spells). Spells without a wiki entry fall through to
+        -- the legacy acquisition_full path below so nothing regresses.
+        full_lines = build_spell_info_lines(sel)
     else
         local raw = acquisition_full_for(sel)
         if raw == '' then

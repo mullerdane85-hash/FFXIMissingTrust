@@ -62,6 +62,14 @@ local spell_acquisition_full = require('libs/acquisition_full')
 -- BOTH the in-row tag and the full hover tooltip.
 local spell_acquisition_extra = require('libs/acquisition_extra')
 
+-- Auto-generated trust info (Job / Spells / Abilities / Weapon Skills /
+-- Acquisition / Special Features) scraped from BG-Wiki Cipher: pages.
+-- Used by the TRUST tab's right-panel rendering. Trusts whose
+-- BG-Wiki cipher page is a stub (older Story-of-Vana'diel trusts)
+-- have an empty table entry; the renderer falls back to "(no
+-- detailed wiki info available)" in that case.
+local trust_info = require('libs/trust_info')
+
 -- Helper: short tag for a spell name. Tries the curated extras first,
 -- then the CSV-derived short table, then derives a BLU family name
 -- from the full-detail text if the spell is a Blue Magic learn, then
@@ -956,6 +964,82 @@ local function wrap_line(line, width)
     return out
 end
 
+-- =====================================================================
+-- Trust right-panel renderer
+-- =====================================================================
+-- Builds the list of lines that go in the right panel when the TRUST
+-- tab is active and the user has locked a trust by clicking it. Pulls
+-- structured fields out of libs/trust_info.lua and wraps each one to
+-- the same TOOLTIP_WIDTH_CHARS width the spell renderer uses.
+--
+-- Layout (top -> bottom):
+--   <Trust name>                                   (yellow)
+--   <existing job + role descriptor from JOB_BY_TRUST / DESC_BY_TRUST>
+--                                                  (muted)
+--   ---
+--   Job:           <wiki Job field>                (cyan header / white body)
+--   Spells:        <wiki Spells field>
+--   Abilities:     <wiki Abilities field>
+--   Weapon Skills: <wiki Weapon Skills field>
+--   Acquisition:                                   (cyan header)
+--     - <bullet 1>                                 (indented)
+--     - <bullet 2>
+--   Special Features:
+--     - <bullet 1>
+--     ...
+--
+-- When the wiki entry for a trust is a stub (typical for older
+-- Story-of-Vana'diel trusts whose Cipher_of_X%27s_alter_ego page on
+-- BG-Wiki has no detail), the body collapses to just the two header
+-- lines + a muted "(no detailed wiki info available)" placeholder.
+local function build_trust_info_lines(name)
+    local out = {}
+    -- Header: name (yellow) + the addon's existing one-line summary
+    table.insert(out, '\\cs(255,220,140)' .. name .. '\\cr')
+    local jb = trust_job(name)
+    local desc = trust_desc(name)
+    local header = jb
+    if desc and desc ~= '' then header = header .. ' - ' .. desc end
+    if header ~= '?' then
+        table.insert(out, '\\cs(180,180,180)' .. header .. '\\cr')
+    end
+    -- Separator
+    table.insert(out, '')
+
+    local info = trust_info[name]
+    if not info or next(info) == nil then
+        table.insert(out, '\\cs(180,180,180)(no detailed wiki info available)\\cr')
+        return out
+    end
+
+    -- Single-value fields: emit "<label>:" header + wrapped body lines
+    local function emit_field(label, value)
+        if not value or value == '' then return end
+        table.insert(out, '\\cs(150,220,255)' .. label .. ':\\cr')
+        for _, l in ipairs(wrap_line('  ' .. value, TOOLTIP_WIDTH_CHARS)) do
+            table.insert(out, l)
+        end
+    end
+    -- List fields: emit "<label>:" header + each bullet, indented + wrapped
+    local function emit_list(label, items)
+        if not items or #items == 0 then return end
+        table.insert(out, '\\cs(150,220,255)' .. label .. ':\\cr')
+        for _, item in ipairs(items) do
+            for _, l in ipairs(wrap_line('  - ' .. item, TOOLTIP_WIDTH_CHARS)) do
+                table.insert(out, l)
+            end
+        end
+    end
+
+    emit_field('Job',           info.job)
+    emit_field('Spells',        info.spells)
+    emit_field('Abilities',     info.abilities)
+    emit_field('Weapon Skills', info.weapon_skills)
+    emit_list ('Acquisition',   info.acquisition)
+    emit_list ('Special',       info.special)
+    return out
+end
+
 -- Convert a raw CSV detail string into a tooltip-friendly multi-line text:
 -- each acquisition method gets its own labelled header line, with its
 -- details on indented bullet lines below. BLU spells get a custom layout
@@ -1330,6 +1414,13 @@ local function build_window()
     local full_lines
     if sel == '' then
         full_lines = { '\\cs(150,180,220)Click a spell to lock its acquisition info here.\\cr' }
+    elseif is_trust_tab() then
+        -- TRUST tab: pull from libs/trust_info.lua (auto-generated from
+        -- BG-Wiki Cipher: pages) and render a structured panel with
+        -- Job / Spells / Abilities / Weapon Skills / Acquisition /
+        -- Special Features. Falls back gracefully when a particular
+        -- trust's Cipher page on the wiki is a stub.
+        full_lines = build_trust_info_lines(sel)
     else
         local raw = acquisition_full_for(sel)
         if raw == '' then

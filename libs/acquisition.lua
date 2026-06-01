@@ -266,66 +266,66 @@ return {
     ['Gain-STR'] = 'BCNM / Vendor / Drop',
     ['Gain-VIT'] = 'Vendor / Drop',
     ['Gekka: Ichi'] = 'Vendor',
-    -- Geo-Acumen: GEO lv 50 | Reservoir in Beaucedine Glacier (J-6) | needs Indi-Acumen
-    ['Geo-Acumen'] = 'Geomantic Reservoir [ Beaucedine Glacier (J-6) ] - lv 50, requires Indi-Acumen',
-    -- Geo-AGI: GEO lv 43 | Reservoir in Castle Oztroja (H-8) | needs Indi-AGI
-    ['Geo-AGI'] = 'Geomantic Reservoir [ Castle Oztroja (H-8) ] - lv 43, requires Indi-AGI',
-    -- Geo-Attunement: GEO lv 20 | Reservoir in Qufim Island (I-9) | needs Indi-Attunement
-    ['Geo-Attunement'] = 'Geomantic Reservoir [ Qufim Island (I-9) ] - lv 20, requires Indi-Attunement',
-    -- Geo-Barrier: GEO lv 32 | Reservoir in Batallia Downs (D-7) | needs Indi-Barrier
-    ['Geo-Barrier'] = 'Geomantic Reservoir [ Batallia Downs (D-7) ] - lv 32, requires Indi-Barrier',
-    -- Geo-CHR: GEO lv 34 | Reservoir in Lower Delkfutt's Tower (E-8) | needs Indi-CHR
-    ['Geo-CHR'] = 'Geomantic Reservoir [ Lower Delkfutt\'s Tower (E-8) ] - lv 34, requires Indi-CHR',
-    -- Geo-DEX: GEO lv 49 | Reservoir in Behemoth's Dominion (E-8) | needs Indi-DEX
-    ['Geo-DEX'] = 'Geomantic Reservoir [ Behemoth\'s Dominion (E-8) ] - lv 49, requires Indi-DEX',
-    -- Geo-Fade: GEO lv 98 | Reservoir in Morimar Basalt Fields (G-8) | needs Indi-Fade
-    ['Geo-Fade'] = 'Geomantic Reservoir [ Morimar Basalt Fields (G-8) ] - lv 98, requires Indi-Fade',
-    -- Geo-Fend: GEO lv 44 | Reservoir in Davoi (J-11) | needs Indi-Fend
-    ['Geo-Fend'] = 'Geomantic Reservoir [ Davoi (J-11) ] - lv 44, requires Indi-Fend',
-    -- Geo-Focus: GEO lv 26 | Reservoir in Gusgen Mines (G-8) | needs Indi-Focus
-    ['Geo-Focus'] = 'Geomantic Reservoir [ Gusgen Mines (G-8) ] - lv 26, requires Indi-Focus',
-    -- Geo-Frailty: GEO lv 80 | Reservoir in Ceizak Battlegrounds (F-8) | needs Indi-Frailty
-    ['Geo-Frailty'] = 'Geomantic Reservoir [ Ceizak Battlegrounds (F-8) ] - lv 80, requires Indi-Frailty',
-    -- Geo-Fury: GEO lv 38 | Reservoir in Sauromugue Champaign (K-6) | needs Indi-Fury
-    ['Geo-Fury'] = 'Geomantic Reservoir [ Sauromugue Champaign (K-6) ] - lv 38, requires Indi-Fury',
-    -- Geo-Gravity: GEO lv 92 | Reservoir in Foret de Hennetiel (I-7) | needs Indi-Gravity
-    ['Geo-Gravity'] = 'Geomantic Reservoir [ Foret de Hennetiel (I-7) ] - lv 92, requires Indi-Gravity',
-    -- Geo-Haste: GEO lv 97 | Reservoir in Marjami Ravine (J-6) | needs Indi-Haste
-    ['Geo-Haste'] = 'Geomantic Reservoir [ Marjami Ravine (J-6) ] - lv 97, requires Indi-Haste',
-    -- Geo-INT: GEO lv 40 | Reservoir in Beaucedine Glacier (H-9) | needs Indi-INT
-    ['Geo-INT'] = 'Geomantic Reservoir [ Beaucedine Glacier (H-9) ] - lv 40, requires Indi-INT',
-    -- Geo-Languor: GEO lv 68 | Reservoir in Bostaunieux Oubliette (I-11) | needs Indi-Languor
-    ['Geo-Languor'] = 'Geomantic Reservoir [ Bostaunieux Oubliette (I-11) ] - lv 68, requires Indi-Languor',
-    -- Geo-Malaise: GEO lv 92 | Reservoir in Morimar Basalt Fields (J-6) | needs Indi-Malaise
-    ['Geo-Malaise'] = 'Geomantic Reservoir [ Morimar Basalt Fields (J-6) ] - lv 92, requires Indi-Malaise',
-    -- Geo-MND: GEO lv 37 | Reservoir in Rolanberry Fields (J-10) | needs Indi-MND
-    ['Geo-MND'] = 'Geomantic Reservoir [ Rolanberry Fields (J-10) ] - lv 37, requires Indi-MND',
-    -- Geo-Paralysis: GEO lv 72 | Reservoir in Fei'Yin (H-5) | needs Indi-Paralysis
-    ['Geo-Paralysis'] = 'Geomantic Reservoir [ Fei\'Yin (H-5) ] - lv 72, requires Indi-Paralysis',
-    -- Geo-Poison: GEO lv 5 | Reservoir in East Ronfaure (I-7) | needs Indi-Poison
-    ['Geo-Poison'] = 'Geomantic Reservoir [ East Ronfaure (I-7) ] - lv 5, requires Indi-Poison',
-    -- Geo-Precision: GEO lv 14 | Reservoir in Konschtat Highlands (F/G-6) | needs Indi-Precision
-    ['Geo-Precision'] = 'Geomantic Reservoir [ Konschtat Highlands (F/G-6) ] - lv 14, requires Indi-Precision',
-    -- Geo-Refresh: GEO lv 34 | Reservoir in La Theine Plateau (H-10) | needs Indi-Refresh
-    ['Geo-Refresh'] = 'Geomantic Reservoir [ La Theine Plateau (H-10) ] - lv 34, requires Indi-Refresh',
-    -- Geo-Regen: GEO lv 19 | Reservoir in La Theine Plateau (J/K-5) | needs Indi-Regen
-    ['Geo-Regen'] = 'Geomantic Reservoir [ La Theine Plateau (J/K-5) ] - lv 19, requires Indi-Regen',
-    -- Geo-Slip: GEO lv 62 | Reservoir in The Eldieme Necropolis (J-11) | needs Indi-Slip
-    ['Geo-Slip'] = 'Geomantic Reservoir [ The Eldieme Necropolis (J-11) ] - lv 62, requires Indi-Slip',
-    -- Geo-Slow: GEO lv 52 | Reservoir in Beadeaux (K-8) | needs Indi-Slow
-    ['Geo-Slow'] = 'Geomantic Reservoir [ Beadeaux (K-8) ] - lv 52, requires Indi-Slow',
-    -- Geo-STR: GEO lv 52 | Reservoir in Crawlers' Nest (F-6) | needs Indi-STR
-    ['Geo-STR'] = 'Geomantic Reservoir [ Crawlers\' Nest (F-6) ] - lv 52, requires Indi-STR',
-    -- Geo-Torpor: GEO lv 56 | Reservoir in Xarcabard (F-7) | needs Indi-Torpor
-    ['Geo-Torpor'] = 'Geomantic Reservoir [ Xarcabard (F-7) ] - lv 56, requires Indi-Torpor',
-    -- Geo-Vex: GEO lv 74 | Reservoir in Upper Delkfutt's Tower (G-7) | needs Indi-Vex
-    ['Geo-Vex'] = 'Geomantic Reservoir [ Upper Delkfutt\'s Tower (G-7) ] - lv 74, requires Indi-Vex',
-    -- Geo-VIT: GEO lv 46 | Reservoir in Garlaige Citadel (H-9) | needs Indi-VIT
-    ['Geo-VIT'] = 'Geomantic Reservoir [ Garlaige Citadel (H-9) ] - lv 46, requires Indi-VIT',
-    -- Geo-Voidance: GEO lv 8 | Reservoir in Tahrongi Canyon (H/I-7) | needs Indi-Voidance
-    ['Geo-Voidance'] = 'Geomantic Reservoir [ Tahrongi Canyon (H/I-7) ] - lv 8, requires Indi-Voidance',
-    -- Geo-Wilt: GEO lv 86 | Reservoir in Yahse Hunting Grounds (K-7) | needs Indi-Wilt
-    ['Geo-Wilt'] = 'Geomantic Reservoir [ Yahse Hunting Grounds (K-7) ] - lv 86, requires Indi-Wilt',
+    -- Geo-Acumen: Beaucedine Glacier (J-6) - Next to lake heading toward Fei'Yin at the edge of (J-7). Quickest way is /BLM and go to Home Point #1 in Fei'Yin and cast Escape.
+    ['Geo-Acumen'] = 'Geomantic Reservoir',
+    -- Geo-AGI: Castle Oztroja (H-8) - Second floor of map 6, from Exit F (G-7) on map 2. Southeast corner of (H-8). Use Survival Guide warp.
+    ['Geo-AGI'] = 'Geomantic Reservoir',
+    -- Geo-Attunement: Qufim Island (I-9) - Next to the spine, in the tunnel near Port Jeuno.
+    ['Geo-Attunement'] = 'Geomantic Reservoir',
+    -- Geo-Barrier: Batallia Downs (D-7) - Located on top of the cairn entrance in narrow valley northwest of Junger Forest zone.
+    ['Geo-Barrier'] = 'Geomantic Reservoir',
+    -- Geo-CHR: Lower Delkfutt's Tower (E-8) - Teleport to the Survival Guide or enter through the main entrance from Qufim Island. From here, take the west fork of the entrance 4-way, use the stairs at (F-9) to ascend to the second floor, then take the north path once up the stairs.
+    ['Geo-CHR'] = 'Geomantic Reservoir',
+    -- Geo-DEX: Behemoth's Dominion (E-8) - Use south path towards Behemoth pop area. The quickest way to get there is to use the Unity Concord warp by selecting Subjugation: Sovereign Behem. quest. You'll land at (F-7), just north of the Geomantic Reservoir.
+    ['Geo-DEX'] = 'Geomantic Reservoir',
+    -- Geo-Fade: Morimar Basalt Fields (G-8) - Near a hot spring. (Use Bivouac #3 waypoint. Mount up and snake north/northwest.)
+    ['Geo-Fade'] = 'Geomantic Reservoir',
+    -- Geo-Fend: Davoi (J-11) - Off the map along the river. Use Survival Guide warp.
+    ['Geo-Fend'] = 'Geomantic Reservoir',
+    -- Geo-Focus: Gusgen Mines (G-8) - From entrance or Survival Guide, north at first intersection, then west at 2nd intersection where Fly Agaric spawn.
+    ['Geo-Focus'] = 'Geomantic Reservoir',
+    -- Geo-Frailty: Ceizak Battlegrounds (F-8) - Left-most middle of (F-8). (Use Bivouac #3 waypoint.)
+    ['Geo-Frailty'] = 'Geomantic Reservoir',
+    -- Geo-Fury: Sauromugue Champaign (K-6) - Located in a crater near Deadly Dodo area (the northwest corner of K-6). (Use Unity Warp 125.)
+    ['Geo-Fury'] = 'Geomantic Reservoir',
+    -- Geo-Gravity: Foret de Hennetiel (I-7) - Bottom left corner of (I-7), next to the water. (Use Station waypoint.)
+    ['Geo-Gravity'] = 'Geomantic Reservoir',
+    -- Geo-Haste: Marjami Ravine (J-6) - Top right corner of (J-6), near the Ergon Locus. (Use Station waypoint.)
+    ['Geo-Haste'] = 'Geomantic Reservoir',
+    -- Geo-INT: Beaucedine Glacier (H-9) - Near a lake. (Fastest: Survival Guide warp. Reservoir is directly east.)
+    ['Geo-INT'] = 'Geomantic Reservoir',
+    -- Geo-Languor: Bostaunieux Oubliette (I-11) - Map 2, (I-11). Use Survival Guide or Unity Warp 122. If unable to use either method, go talk to Couchatorage on map 1 (E-8), and you will drop down to (I-6) on map 2. From there, head south.
+    ['Geo-Languor'] = 'Geomantic Reservoir',
+    -- Geo-Malaise: Morimar Basalt Fields (J-6) - Middle of (J-6), alongside the northern part of the eastern wall. On top of some snow, right near the unmarked path that leads to (K-7). (Use Bivouac #1 waypoint.)
+    ['Geo-Malaise'] = 'Geomantic Reservoir',
+    -- Geo-MND: Rolanberry Fields (J-10) - Next to the pond. (Fastest: Use Survival Guide from Crawler's Nest entrance, then head NE.)
+    ['Geo-MND'] = 'Geomantic Reservoir',
+    -- Geo-Paralysis: Fei'Yin (H-5) - Basement level, next to the northeastern pool. (Use Home Point #2.)
+    ['Geo-Paralysis'] = 'Geomantic Reservoir',
+    -- Geo-Poison: East Ronfaure (I-7) - In the river, just below the falls.
+    ['Geo-Poison'] = 'Geomantic Reservoir',
+    -- Geo-Precision: Konschtat Highlands (F/G-6) - Surrounded by three boulders.
+    ['Geo-Precision'] = 'Geomantic Reservoir',
+    -- Geo-Refresh: La Theine Plateau (H-10) - Lengthy path through Ordelle's Caves. Detailed directions on the spell page. (Use Proto-Waypoint warp if available.)
+    ['Geo-Refresh'] = 'Geomantic Reservoir',
+    -- Geo-Regen: La Theine Plateau (J/K-5) - Accessible via ramp in (H-7), then through tunnel at bottom to the east.
+    ['Geo-Regen'] = 'Geomantic Reservoir',
+    -- Geo-Slip: The Eldieme Necropolis (J-11) - Enter from Batallia Downs (H-7), straight south.
+    ['Geo-Slip'] = 'Geomantic Reservoir',
+    -- Geo-Slow: Beadeaux (K-8) - Northwest (top-left) corner of (K-8), in the middle of four stone pillars, near some Broo.
+    ['Geo-Slow'] = 'Geomantic Reservoir',
+    -- Geo-STR: Crawlers' Nest (F-6) - Using the Voidwatch or Unity Warp to Rolanberry Fields (125) will place you closest. Travel to (F-6) on map 2. It is located in the southwest corner of the room.
+    ['Geo-STR'] = 'Geomantic Reservoir',
+    -- Geo-Torpor: Xarcabard (F-7) - On the upper level, near the entrance to Uleguerand Range. Fastest method is to Voidwatch warp to Uleguerand Range, then zone back into Xarcabard. Otherwise, warp to the Xarcabard Survival Guide or use Teleport-Vahzl and head northwest towards the ramp at (G-7).
+    ['Geo-Torpor'] = 'Geomantic Reservoir',
+    -- Geo-Vex: Upper Delkfutt's Tower (G-7) - Floor 12, northwest room. (Use Home Point #1.)
+    ['Geo-Vex'] = 'Geomantic Reservoir',
+    -- Geo-VIT: Garlaige Citadel (H-9) - Map 2 (behind Gate #1), behind the Fetid Flesh, where the Garlaige Chest spawns. Use Survival Guide warp.
+    ['Geo-VIT'] = 'Geomantic Reservoir',
+    -- Geo-Voidance: Tahrongi Canyon (H/I-7) - Small alcove in the middle of a mountain circle.
+    ['Geo-Voidance'] = 'Geomantic Reservoir',
+    -- Geo-Wilt: Yahse Hunting Grounds (K-7) - On the northernmost beach on the east side, near water. (Use Station waypoint.)
+    ['Geo-Wilt'] = 'Geomantic Reservoir',
     ['Geohelix'] = 'Vendor',
     ['Geohelix II'] = 'Job Point Prog',
     ['Goblin Gavotte'] = 'Vendor',

@@ -626,10 +626,12 @@ local function all_spells_for_job(ens, lv_cap)
     --   1. Normal (non-prefixed) spells learned the usual way
     --   2. Indi-X — companion debuff/buff spells purchased from Adoulin vendors
     --   3. Geo-X  — the matching Geomantic Reservoir spells (need the Indi-X first)
-    -- Sorting them by level interleaves all three families, which makes it
-    -- hard to scan when you're hunting one specific category. Group them
-    -- instead: Normal first, then Indi-, then Geo-, with each group sorted
-    -- alphabetically. Other jobs keep the original level-then-name sort.
+    -- Sorting them all together by level interleaves the three families,
+    -- which makes it hard to scan when you're hunting one specific category.
+    -- Group them: Normal first, then Indi-, then Geo-. WITHIN each group,
+    -- keep the usual level-then-name ordering so the lowest-level missing
+    -- spell in each family is right at the top. Other jobs keep the
+    -- single-list level-then-name sort.
     if ens == 'GEO' then
         local function geo_group(name)
             if name:sub(1, 5) == 'Indi-' then return 2 end
@@ -639,6 +641,7 @@ local function all_spells_for_job(ens, lv_cap)
         table.sort(out, function(a, b)
             local ga, gb = geo_group(a.name), geo_group(b.name)
             if ga ~= gb then return ga < gb end
+            if a.level ~= b.level then return a.level < b.level end
             return a.name < b.name
         end)
     else

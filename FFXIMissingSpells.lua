@@ -70,6 +70,11 @@ local spell_acquisition_extra = require('libs/acquisition_extra')
 -- detailed wiki info available)" in that case.
 local trust_info = require('libs/trust_info')
 
+-- Auto-generated COR die data (BG-Wiki Category:Dice). 31 dice, each
+-- teaching a Phantom Roll. Used by the COR tab to populate rows and by
+-- build_die_info_lines() to render Description / Purchased / Obtained.
+local dice_info = require('libs/dice_info')
+
 -- Helper: short tag for a spell name. Tries the curated extras first,
 -- then the CSV-derived short table, then derives a BLU family name
 -- from the full-detail text if the spell is a Blue Magic learn, then
@@ -105,7 +110,7 @@ end
 -- res.jobs entry, it's the original FFXIMissingTrust functionality folded
 -- in as a tab. The other twelve are job ens codes that match res.jobs.
 -- ---------------------------------------------------------------------------
-local JOB_TABS = { 'TRUST','WHM','BLM','RDM','PLD','DRK','BRD','NIN','SMN','BLU','GEO','SCH','RUN' }
+local JOB_TABS = { 'TRUST','WHM','BLM','RDM','PLD','DRK','BRD','NIN','SMN','BLU','GEO','SCH','RUN','COR' }
 
 -- ens (e.g. 'WHM') → numeric job id. Populated from res.jobs at load.
 local job_id_by_ens = {}
@@ -395,6 +400,7 @@ config.save(settings)
 -- Now that `settings` exists as a local in this chunk, define the helper
 -- (Lua captures `settings` lexically at definition time).
 local function is_trust_tab() return settings.job == 'TRUST' end
+local function is_cor_tab()   return settings.job == 'COR'   end
 
 -- ---------------------------------------------------------------------------
 -- Visual constants — same family as FFXIMissingTrust (red/pink palette) so
@@ -569,6 +575,38 @@ local function all_trusts()
     return out
 end
 
+-- COR-tab row list: every die from dice_info, treated as a "spell" entry
+-- so the existing row builder / mouse handler can pick it up. The dice
+-- list comes from BG-Wiki Category:Dice (libs/dice_info.lua) and is
+-- sorted by COR level then name. is_die=true tags the entries so the
+-- detail-pane renderer (build_die_info_lines) knows to format them
+-- with Description / Purchased From / Obtained From instead of the
+-- usual acquisition CSV layout. There's no "owned" tracking yet because
+-- dice are consumable -- once used they teach the matching Phantom Roll
+-- and disappear; "missing" semantics would mean "the player doesn't
+-- have the Phantom Roll yet" but that requires reading job-ability
+-- state which the addon doesn't currently fetch.  For now every die
+-- shows as "missing" (yellow) so the user can scan the whole list.
+local function all_dice()
+    local out = {}
+    for name, info in pairs(dice_info) do
+        table.insert(out, {
+            id     = name,                              -- string ID is fine here
+            name   = name,
+            level  = info.cor_level or 99,
+            skill  = info.phantom_roll or '',           -- shown in the skill column
+            type   = 'Die',
+            is_die = true,
+            phantom_roll = info.phantom_roll,
+        })
+    end
+    table.sort(out, function(a, b)
+        if a.level ~= b.level then return a.level < b.level end
+        return a.name < b.name
+    end)
+    return out
+end
+
 -- Every spell the given job (ens like 'WHM') can natively learn at lv 1-cap.
 -- For the special 'TRUST' tab, defers to all_trusts() above. Returns a
 -- list of { id, name, level, skill, type, is_trust?, trust_job?, trust_desc? }
@@ -585,6 +623,7 @@ end
 -- This matches what other "spellbook" addons display.
 local function all_spells_for_job(ens, lv_cap)
     if ens == 'TRUST' then return all_trusts() end
+    if ens == 'COR'   then return all_dice()   end
     lv_cap = lv_cap or 99
     local jid = job_id_by_ens[ens]
     if not jid then return {} end
@@ -662,8 +701,30 @@ local function all_spells_for_job(ens, lv_cap)
 end
 
 local function partition_for_job(ens)
-    local known = windower.ffxi.get_spells() or {}
     local owned, missing = {}, {}
+    if ens == 'COR' then
+        -- COR dice are "owned" once the player KNOWS the matching Phantom
+        -- Roll. windower.ffxi.get_abilities() returns the abilities the
+        -- current job/sub can use — so this only reflects reality when the
+        -- player is actually playing COR (or has COR sub). On other jobs
+        -- every die just shows as missing, which is the right fallback.
+        local abil = windower.ffxi.get_abilities() or {}
+        local known_roll_names = {}
+        for _, id in pairs(abil.job_abilities or {}) do
+            local a = res.job_abilities and res.job_abilities[id]
+            if a and a.en then known_roll_names[a.en] = true end
+        end
+        for _, s in ipairs(all_spells_for_job(ens)) do
+            if s.phantom_roll and known_roll_names[s.phantom_roll] then
+                table.insert(owned, s)
+            else
+                table.insert(missing, s)
+            end
+        end
+        return owned, missing
+    end
+
+    local known = windower.ffxi.get_spells() or {}
     for _, s in ipairs(all_spells_for_job(ens)) do
         if known[s.id] then table.insert(owned, s)
         else                table.insert(missing, s) end
@@ -685,7 +746,9 @@ end
 -- Returns ({rows}, summary_line, row_color) for the current mode + job.
 local function rows_for_view()
     local job = settings.job
-    local unit = (job == 'TRUST') and 'trusts' or 'spells'
+    local unit = 'spells'
+    if job == 'TRUST' then unit = 'trusts'
+    elseif job == 'COR' then unit = 'dice' end
     local owned, missing = partition_for_job(job)
 
     -- For the TRUST tab specifically, separate UC from regular for the
@@ -767,7 +830,9 @@ end
 local function cmd_count(arg)
     local job = resolve_job_arg(arg)
     if not job then chat(CHAT_MISSING, '[MissingSpells] unknown tab "'..tostring(arg)..'"'); return end
-    local unit = (job == 'TRUST') and 'trusts' or 'spells'
+    local unit = 'spells'
+    if job == 'TRUST' then unit = 'trusts'
+    elseif job == 'COR' then unit = 'dice' end
     local owned, missing = partition_for_job(job)
     if job == 'TRUST' then
         -- Split UC from regular so the headline count matches what the
@@ -1037,6 +1102,99 @@ local function build_trust_info_lines(name)
     emit_field('Weapon Skills', info.weapon_skills)
     emit_list ('Acquisition',   info.acquisition)
     emit_list ('Special',       info.special)
+    return out
+end
+
+-- =====================================================================
+-- COR die right-panel renderer
+-- =====================================================================
+-- Builds the right-panel lines for a clicked die on the COR tab. Pulls
+-- Description / Purchased From / Obtained From out of libs/dice_info.lua
+-- and wraps each one to TOOLTIP_WIDTH_CHARS.
+--
+-- Layout (top -> bottom):
+--   <Die name>                                     (yellow)
+--   COR lv NN  ·  teaches: <Phantom Roll>          (muted summary)
+--   ---
+--   Description:                                   (cyan header)
+--     <description text wrapped>
+--   Purchased from:                                (cyan header)
+--     - <NPC>  ·  <Zone>
+--         <Notes>
+--   Obtained from:                                 (cyan header, optional)
+--     - <Source>
+--         <Notes>
+local function build_die_info_lines(name)
+    local out = {}
+    local info = dice_info[name]
+    if not info then
+        table.insert(out, '\\cs(255,220,140)' .. name .. '\\cr')
+        table.insert(out, '\\cs(180,180,180)(no info available)\\cr')
+        return out
+    end
+
+    -- Header: die name + COR level + Phantom Roll it teaches
+    table.insert(out, '\\cs(255,220,140)' .. name .. '\\cr')
+    local summary_bits = {}
+    if info.cor_level then
+        table.insert(summary_bits, 'COR lv ' .. info.cor_level)
+    end
+    if info.phantom_roll and info.phantom_roll ~= '' then
+        table.insert(summary_bits, 'teaches: ' .. info.phantom_roll)
+    end
+    if #summary_bits > 0 then
+        table.insert(out, '\\cs(180,180,180)' .. table.concat(summary_bits, '  ·  ') .. '\\cr')
+    end
+    table.insert(out, '')
+
+    -- Description
+    if info.description and info.description ~= '' then
+        table.insert(out, '\\cs(150,220,255)Description:\\cr')
+        for _, l in ipairs(wrap_line('  ' .. info.description, TOOLTIP_WIDTH_CHARS)) do
+            table.insert(out, l)
+        end
+        table.insert(out, '')
+    end
+
+    -- Purchased From
+    if info.purchased_from and #info.purchased_from > 0 then
+        table.insert(out, '\\cs(150,220,255)Purchased from:\\cr')
+        for _, row in ipairs(info.purchased_from) do
+            local npc  = row['NPC Name'] or row.NPC or ''
+            local zone = row.Zone or row['Zone'] or ''
+            local note = row.Notes or row.Note or ''
+            local head = '  - ' .. npc
+            if zone ~= '' then head = head .. '  ·  ' .. zone end
+            for _, l in ipairs(wrap_line(head, TOOLTIP_WIDTH_CHARS)) do
+                table.insert(out, l)
+            end
+            if note ~= '' then
+                for _, l in ipairs(wrap_line('      ' .. note, TOOLTIP_WIDTH_CHARS)) do
+                    table.insert(out, l)
+                end
+            end
+        end
+        table.insert(out, '')
+    end
+
+    -- Obtained From  (e.g. quest reward — only a few dice have this)
+    if info.obtained_from and #info.obtained_from > 0 then
+        table.insert(out, '\\cs(150,220,255)Obtained from:\\cr')
+        for _, row in ipairs(info.obtained_from) do
+            -- Column names vary; pick the most likely.
+            local src  = row.Quest or row.Source or row.Type or row.Mob or ''
+            local note = row.Notes or row.Note or ''
+            for _, l in ipairs(wrap_line('  - ' .. src, TOOLTIP_WIDTH_CHARS)) do
+                table.insert(out, l)
+            end
+            if note ~= '' then
+                for _, l in ipairs(wrap_line('      ' .. note, TOOLTIP_WIDTH_CHARS)) do
+                    table.insert(out, l)
+                end
+            end
+        end
+    end
+
     return out
 end
 
@@ -1431,6 +1589,10 @@ local function build_window()
         -- Special Features. Falls back gracefully when a particular
         -- trust's Cipher page on the wiki is a stub.
         full_lines = build_trust_info_lines(sel)
+    elseif is_cor_tab() then
+        -- COR tab: pull from libs/dice_info.lua (BG-Wiki Category:Dice)
+        -- and render Description / Purchased from / Obtained from.
+        full_lines = build_die_info_lines(sel)
     else
         local raw = acquisition_full_for(sel)
         if raw == '' then

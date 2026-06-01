@@ -1340,10 +1340,20 @@ local function build_window()
                 local job_text  = make_text('['..(entry.trust_job or '?')..']',
                                             t_job_col_x, ry + 2, C_SUMMARY, 10, true)
                 local desc_text = make_text(entry.trust_desc or '', t_role_col_x, ry + 2, C_SKILL, 10, false)
+                -- Hit-rect for click selection — same as the spell branch
+                -- below, just with the trust's display name. Without this,
+                -- click handler at line 1627 finds no `rect` field on the
+                -- trust row and the click silently no-ops (which is what
+                -- the user reported as "I can't click on trusts").
+                local hit_rect = {x = row_x - 2, y = ry - 1,
+                                  w = list_w - PAD * 2 + 4, h = ROW_H,
+                                  spell_name = entry.name}
                 -- Reuse the same field names so destroy_window() handles cleanup
                 -- with no special-case code (lv/skill fields just stand in for
                 -- the trust columns).
-                table.insert(ui.rows, { bg = row_bg, lv = job_text, name = name_text, skill = desc_text })
+                table.insert(ui.rows, { bg = row_bg, lv = job_text, name = name_text,
+                                        skill = desc_text,
+                                        rect = hit_rect })
             else
                 local lv_str    = string.format('%s [Lv %2d]', prefix, entry.level)
                 local lv_text   = make_text(lv_str, lv_col_x, ry + 2, C_LEVEL, 10)

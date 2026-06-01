@@ -417,7 +417,6 @@ config.save(settings)
 -- (Lua captures `settings` lexically at definition time).
 local function is_trust_tab() return settings.job == 'TRUST' end
 local function is_cor_tab()   return settings.job == 'COR'   end
-local function is_blu_tab()   return settings.job == 'BLU'   end
 
 -- ---------------------------------------------------------------------------
 -- Visual constants — same family as FFXIMissingTrust (red/pink palette) so
@@ -1216,105 +1215,49 @@ local function build_die_info_lines(name)
 end
 
 -- =====================================================================
--- BLU spell right-panel renderer
+-- Unified spell right-panel renderer
 -- =====================================================================
--- Builds the right-panel lines for a clicked BLU spell. Pulls Description,
--- Target, Stat Bonus, Creates Job Trait, Notes, and Spell Obtainment
--- (Monster / Level / Zone) from libs/blu_info.lua.
+-- Used by EVERY non-COR non-TRUST job tab, including BLU. Merges data
+-- from libs/spell_info.lua and libs/blu_info.lua so the same label set
+-- appears for every spell regardless of which job tab the user
+-- happened to click in from. Field order, label spelling, separator
+-- glyphs, indentation, and trailing colons are all standardized here
+-- so two adjacent clicks on different jobs don't render two slightly-
+-- different layouts.
 --
--- Layout (top -> bottom):
---   <Spell name>                                   (yellow)
---   ---
---   Description:    <wrapped>
---   Target:         <Self / Enemy / etc.>
---   Stat Bonus:     <CHR +1 HP +5>
---   Creates Trait:  <Resist Sleep>
---   Notes:          (cyan header)
---     - <bullet 1 wrapped>
---     - <bullet 2 wrapped>
---   Spell Obtainment:                              (cyan header)
---     - <Monster>  ·  Lv <level>
---         <Zone>
---     - ...
-local function build_blu_info_lines(name)
-    local out = {}
-    local info = blu_info[name]
-    if not info then
-        table.insert(out, '\\cs(255,220,140)' .. name .. '\\cr')
-        table.insert(out, '\\cs(180,180,180)(no detailed wiki info available)\\cr')
-        return out
-    end
-
-    -- Header: spell name (yellow)
-    table.insert(out, '\\cs(255,220,140)' .. name .. '\\cr')
-    table.insert(out, '')
-
-    -- Helper: emit "label: value" with the value wrapped + indented.
-    local function emit_field(label, value)
-        if not value or value == '' then return end
-        table.insert(out, '\\cs(150,220,255)' .. label .. ':\\cr')
-        for _, l in ipairs(wrap_line('  ' .. value, TOOLTIP_WIDTH_CHARS)) do
-            table.insert(out, l)
-        end
-    end
-
-    emit_field('Description',   info.description)
-    emit_field('Target',        info.target)
-    emit_field('Stat Bonus',    info.stat_bonus)
-    emit_field('Creates Trait', info.creates_trait)
-
-    -- Notes (bulleted list from the wiki's Notes heading)
-    if info.notes and #info.notes > 0 then
-        table.insert(out, '')
-        table.insert(out, '\\cs(150,220,255)Notes:\\cr')
-        for _, note in ipairs(info.notes) do
-            for _, l in ipairs(wrap_line('  - ' .. note, TOOLTIP_WIDTH_CHARS)) do
-                table.insert(out, l)
-            end
-        end
-    end
-
-    -- Spell Obtainment table from the wiki: monster + level + zone per row
-    if info.obtainment and #info.obtainment > 0 then
-        table.insert(out, '')
-        table.insert(out, '\\cs(150,220,255)Spell Obtainment:\\cr')
-        for _, row in ipairs(info.obtainment) do
-            local mob   = row.monster or ''
-            local lv    = row.level   or ''
-            local zone  = row.zone    or ''
-            local head  = '  - ' .. mob
-            if lv ~= '' then head = head .. '  ·  Lv ' .. lv end
-            for _, l in ipairs(wrap_line(head, TOOLTIP_WIDTH_CHARS)) do
-                table.insert(out, l)
-            end
-            if zone ~= '' then
-                for _, l in ipairs(wrap_line('      ' .. zone, TOOLTIP_WIDTH_CHARS)) do
-                    table.insert(out, l)
-                end
-            end
-        end
-    end
-
-    return out
-end
-
--- =====================================================================
--- Generic spell right-panel renderer (libs/spell_info.lua)
--- =====================================================================
--- Used by every non-COR non-TRUST job tab. Renders the BG-Wiki spell
--- layout the user requested:
---   <Spell name>                              (yellow)
---   ---
---   Description / Type / Skill / Element / Target / Notes /
---   Dropped from (monster + zone + notes) /
---   Purchased from (NPC + zone + notes).
+-- Field order (every present field uses the same label text):
+--   Description
+--   Type
+--   Skill
+--   Element
+--   Target
+--   Stat Bonus       (BLU only -- absent from general spell info)
+--   Creates Trait    (BLU only)
+--   Notes            (bullet list)
+--   Dropped from     (mob drops -- monster + zone + notes)
+--   Learn from       (BLU mob trigger -- monster + level + zone)
+--   Purchased from   (NPC + zone + price)
+--
+-- Empty fields are skipped silently so the user sees exactly the rows
+-- the wiki has data for, in the same order, every time.
 local function build_spell_info_lines(name)
     local out = {}
-    local info = spell_info[name]
-    if not info then
+    local gi = spell_info[name]
+    local bi = blu_info[name]
+    if not gi and not bi then
         table.insert(out, '\\cs(255,220,140)' .. name .. '\\cr')
         table.insert(out, '\\cs(180,180,180)(no detailed wiki info available)\\cr')
         return out
+    end
+
+    -- Prefer BG-Wiki's general spell-info for the top-line attributes,
+    -- fall back to blu_info when only the BLU page is present.
+    -- (Both sources agree on shared fields like description / target
+    -- because both scrape the same wiki.)
+    local function pick(field)
+        if gi and gi[field] then return gi[field] end
+        if bi and bi[field] then return bi[field] end
+        return nil
     end
 
     table.insert(out, '\\cs(255,220,140)' .. name .. '\\cr')
@@ -1328,28 +1271,34 @@ local function build_spell_info_lines(name)
         end
     end
 
-    emit_field('Description', info.description)
-    emit_field('Type',        info.type)
-    emit_field('Skill',       info.skill)
-    emit_field('Element',     info.element)
-    emit_field('Target',      info.target)
+    emit_field('Description',   pick('description'))
+    emit_field('Type',          pick('type'))
+    emit_field('Skill',         pick('skill'))
+    emit_field('Element',       pick('element'))
+    emit_field('Target',        pick('target'))
+    -- BLU-only fields appear here if present, but only when blu_info
+    -- carries them (general spell pages don't have these labels).
+    emit_field('Stat Bonus',    bi and bi.stat_bonus)
+    emit_field('Creates Trait', bi and bi.creates_trait)
 
     -- Notes (bullet list)
-    if info.notes and #info.notes > 0 then
+    local notes = (gi and gi.notes) or (bi and bi.notes)
+    if notes and #notes > 0 then
         table.insert(out, '')
         table.insert(out, '\\cs(150,220,255)Notes:\\cr')
-        for _, note in ipairs(info.notes) do
+        for _, note in ipairs(notes) do
             for _, l in ipairs(wrap_line('  - ' .. note, TOOLTIP_WIDTH_CHARS)) do
                 table.insert(out, l)
             end
         end
     end
 
-    -- Dropped from: monster + zone + notes per row
-    if info.dropped_from and #info.dropped_from > 0 then
+    -- Dropped from: scroll-drop rows from the general spell-info table.
+    local dropped = gi and gi.dropped_from
+    if dropped and #dropped > 0 then
         table.insert(out, '')
         table.insert(out, '\\cs(150,220,255)Dropped from:\\cr')
-        for _, row in ipairs(info.dropped_from) do
+        for _, row in ipairs(dropped) do
             local head = '  - ' .. (row.monster or '')
             if row.level and row.level ~= '' then
                 head = head .. '  ·  Lv ' .. row.level
@@ -1370,11 +1319,36 @@ local function build_spell_info_lines(name)
         end
     end
 
-    -- Purchased from: NPC + zone + notes
-    if info.purchased_from and #info.purchased_from > 0 then
+    -- Learn from: BLU's Spell Obtainment table -- conceptually distinct
+    -- from "Dropped from" because BLU spells are learned by being hit
+    -- with the ability, not by acquiring a scroll. Keep the label
+    -- distinct so the user knows which mechanic applies.
+    local learn = bi and bi.obtainment
+    if learn and #learn > 0 then
+        table.insert(out, '')
+        table.insert(out, '\\cs(150,220,255)Learn from:\\cr')
+        for _, row in ipairs(learn) do
+            local head = '  - ' .. (row.monster or '')
+            if row.level and row.level ~= '' then
+                head = head .. '  ·  Lv ' .. row.level
+            end
+            for _, l in ipairs(wrap_line(head, TOOLTIP_WIDTH_CHARS)) do
+                table.insert(out, l)
+            end
+            if row.zone and row.zone ~= '' then
+                for _, l in ipairs(wrap_line('      ' .. row.zone, TOOLTIP_WIDTH_CHARS)) do
+                    table.insert(out, l)
+                end
+            end
+        end
+    end
+
+    -- Purchased from: NPC + zone + price.
+    local purchased = gi and gi.purchased_from
+    if purchased and #purchased > 0 then
         table.insert(out, '')
         table.insert(out, '\\cs(150,220,255)Purchased from:\\cr')
-        for _, row in ipairs(info.purchased_from) do
+        for _, row in ipairs(purchased) do
             local head = '  - ' .. (row.npc or '')
             if row.zone and row.zone ~= '' then
                 head = head .. '  ·  ' .. row.zone
@@ -1788,18 +1762,12 @@ local function build_window()
         -- COR tab: pull from libs/dice_info.lua (BG-Wiki Category:Dice)
         -- and render Description / Purchased from / Obtained from.
         full_lines = build_die_info_lines(sel)
-    elseif is_blu_tab() and blu_info[sel] then
-        -- BLU tab prefers blu_info first because it carries Stat Bonus +
-        -- Creates Job Trait fields the generic Category:Spells scrape
-        -- doesn't have. BLU spells missing from blu_info fall through
-        -- to the generic spell_info path below.
-        full_lines = build_blu_info_lines(sel)
-    elseif spell_info[sel] then
-        -- Every other job tab: render the structured Description / Type
-        -- / Skill / Element / Target / Notes / Dropped from / Purchased
-        -- from panel built from libs/spell_info.lua (BG-Wiki
-        -- Category:Spells). Spells without a wiki entry fall through to
-        -- the legacy acquisition_full path below so nothing regresses.
+    elseif spell_info[sel] or blu_info[sel] then
+        -- Unified path for every non-COR non-TRUST job tab, including
+        -- BLU. build_spell_info_lines() merges libs/spell_info.lua and
+        -- libs/blu_info.lua so the same field order and labels render
+        -- regardless of which job tab the spell is on -- no more two-
+        -- different-layouts-for-the-same-renderer behavior.
         full_lines = build_spell_info_lines(sel)
     else
         local raw = acquisition_full_for(sel)

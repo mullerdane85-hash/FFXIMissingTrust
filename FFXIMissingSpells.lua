@@ -75,6 +75,13 @@ local trust_info = require('libs/trust_info')
 -- build_die_info_lines() to render Description / Purchased / Obtained.
 local dice_info = require('libs/dice_info')
 
+-- Auto-generated BLU spell info (BG-Wiki Category:Blue_Magic). 199
+-- spells with description / target / stat_bonus / creates_trait /
+-- notes / obtainment (monster + level + zone). Used on the BLU tab to
+-- replace the generic acquisition_full rendering with a structured
+-- panel that mirrors the BG-Wiki layout.
+local blu_info = require('libs/blu_info')
+
 -- Helper: short tag for a spell name. Tries the curated extras first,
 -- then the CSV-derived short table, then derives a BLU family name
 -- from the full-detail text if the spell is a Blue Magic learn, then
@@ -401,6 +408,7 @@ config.save(settings)
 -- (Lua captures `settings` lexically at definition time).
 local function is_trust_tab() return settings.job == 'TRUST' end
 local function is_cor_tab()   return settings.job == 'COR'   end
+local function is_blu_tab()   return settings.job == 'BLU'   end
 
 -- ---------------------------------------------------------------------------
 -- Visual constants — same family as FFXIMissingTrust (red/pink palette) so
@@ -1198,6 +1206,89 @@ local function build_die_info_lines(name)
     return out
 end
 
+-- =====================================================================
+-- BLU spell right-panel renderer
+-- =====================================================================
+-- Builds the right-panel lines for a clicked BLU spell. Pulls Description,
+-- Target, Stat Bonus, Creates Job Trait, Notes, and Spell Obtainment
+-- (Monster / Level / Zone) from libs/blu_info.lua.
+--
+-- Layout (top -> bottom):
+--   <Spell name>                                   (yellow)
+--   ---
+--   Description:    <wrapped>
+--   Target:         <Self / Enemy / etc.>
+--   Stat Bonus:     <CHR +1 HP +5>
+--   Creates Trait:  <Resist Sleep>
+--   Notes:          (cyan header)
+--     - <bullet 1 wrapped>
+--     - <bullet 2 wrapped>
+--   Spell Obtainment:                              (cyan header)
+--     - <Monster>  ·  Lv <level>
+--         <Zone>
+--     - ...
+local function build_blu_info_lines(name)
+    local out = {}
+    local info = blu_info[name]
+    if not info then
+        table.insert(out, '\\cs(255,220,140)' .. name .. '\\cr')
+        table.insert(out, '\\cs(180,180,180)(no detailed wiki info available)\\cr')
+        return out
+    end
+
+    -- Header: spell name (yellow)
+    table.insert(out, '\\cs(255,220,140)' .. name .. '\\cr')
+    table.insert(out, '')
+
+    -- Helper: emit "label: value" with the value wrapped + indented.
+    local function emit_field(label, value)
+        if not value or value == '' then return end
+        table.insert(out, '\\cs(150,220,255)' .. label .. ':\\cr')
+        for _, l in ipairs(wrap_line('  ' .. value, TOOLTIP_WIDTH_CHARS)) do
+            table.insert(out, l)
+        end
+    end
+
+    emit_field('Description',   info.description)
+    emit_field('Target',        info.target)
+    emit_field('Stat Bonus',    info.stat_bonus)
+    emit_field('Creates Trait', info.creates_trait)
+
+    -- Notes (bulleted list from the wiki's Notes heading)
+    if info.notes and #info.notes > 0 then
+        table.insert(out, '')
+        table.insert(out, '\\cs(150,220,255)Notes:\\cr')
+        for _, note in ipairs(info.notes) do
+            for _, l in ipairs(wrap_line('  - ' .. note, TOOLTIP_WIDTH_CHARS)) do
+                table.insert(out, l)
+            end
+        end
+    end
+
+    -- Spell Obtainment table from the wiki: monster + level + zone per row
+    if info.obtainment and #info.obtainment > 0 then
+        table.insert(out, '')
+        table.insert(out, '\\cs(150,220,255)Spell Obtainment:\\cr')
+        for _, row in ipairs(info.obtainment) do
+            local mob   = row.monster or ''
+            local lv    = row.level   or ''
+            local zone  = row.zone    or ''
+            local head  = '  - ' .. mob
+            if lv ~= '' then head = head .. '  ·  Lv ' .. lv end
+            for _, l in ipairs(wrap_line(head, TOOLTIP_WIDTH_CHARS)) do
+                table.insert(out, l)
+            end
+            if zone ~= '' then
+                for _, l in ipairs(wrap_line('      ' .. zone, TOOLTIP_WIDTH_CHARS)) do
+                    table.insert(out, l)
+                end
+            end
+        end
+    end
+
+    return out
+end
+
 -- Convert a raw CSV detail string into a tooltip-friendly multi-line text:
 -- each acquisition method gets its own labelled header line, with its
 -- details on indented bullet lines below. BLU spells get a custom layout
@@ -1593,6 +1684,13 @@ local function build_window()
         -- COR tab: pull from libs/dice_info.lua (BG-Wiki Category:Dice)
         -- and render Description / Purchased from / Obtained from.
         full_lines = build_die_info_lines(sel)
+    elseif is_blu_tab() and blu_info[sel] then
+        -- BLU tab: when the clicked spell exists in libs/blu_info.lua,
+        -- render the structured Description / Target / Stat Bonus /
+        -- Creates Trait / Notes / Spell Obtainment panel. Spells that
+        -- don't have a wiki entry fall through to the generic
+        -- acquisition_full path below.
+        full_lines = build_blu_info_lines(sel)
     else
         local raw = acquisition_full_for(sel)
         if raw == '' then

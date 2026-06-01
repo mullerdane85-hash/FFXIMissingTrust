@@ -2159,22 +2159,39 @@ end)
 -- Lifecycle
 -- ---------------------------------------------------------------------------
 
+-- Login-screen guard helper. Keeps build_window from drawing while the
+-- player is sitting at character-select / launcher (Windower auto-loads
+-- addons before the player picks a character; without this gate the
+-- panel ghosts on top of the SE login UI).
+local function _player_in_game()
+    local info = windower.ffxi.get_info()
+    return info and info.logged_in == true
+end
+
 windower.register_event('load', function()
     coroutine.schedule(function()
         cmd_count(settings.job)
-        if settings.visible then build_window() end
+        if settings.visible and _player_in_game() then build_window() end
     end, 2)
 end)
 
 windower.register_event('login', function()
     coroutine.schedule(function()
         cmd_count(settings.job)
-        refresh_window()
+        if settings.visible then build_window() end
     end, 3)
 end)
 
+windower.register_event('logout', function()
+    -- Hide the panel when returning to character-select without
+    -- clobbering the user's settings.visible preference.
+    destroy_window()
+end)
+
 windower.register_event('zone change', function()
-    coroutine.schedule(refresh_window, 1)
+    coroutine.schedule(function()
+        if _player_in_game() then refresh_window() end
+    end, 1)
 end)
 
 windower.register_event('unload', function()

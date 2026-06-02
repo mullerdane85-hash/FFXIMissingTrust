@@ -1,5 +1,23 @@
+--[[
+Copyright © 2026, mullerdane85-hash
+All rights reserved. BSD-3-Clause. See LICENSE.
+
+FFXIMissingSpells — quick visual reference for which spells your
+character still needs to learn, broken out by magic-using job.
+Twelve tabs (WHM / BLM / RDM / PLD / DRK / BRD / NIN / SMN / BLU /
+GEO / SCH / RUN) each list every spell the job can learn at lv 1-99
+with a colored prefix:
+
+    - red    you don't have this spell scrolled yet
+    + green  already learned
+
+Filter sub-tabs in the title bar (Missing / Owned / All) trim the
+list to whichever subset you want. Click any row for a BG-Wiki info
+panel: NPC, recipe, vendor, description, trust party-name, etc.
+]]
+
 _addon.name     = 'FFXIMissingSpells'
-_addon.author   = 'Jason'
+_addon.author   = 'mullerdane85-hash'
 _addon.version  = '1.0'
 -- Bare //ms toggles the window. //mt is kept as a back-compat alias so
 -- anyone who scripted the older FFXIMissingTrust commands keeps working.

@@ -2186,13 +2186,24 @@ local function _player_in_game()
     return info and info.logged_in == true
 end
 
--- Auto-hide while chat / macro editor is open so the panel doesn't
--- ghost on top of the in-game text overlay. settings.visible is
--- preserved; the panel reappears as soon as the input closes.
+-- Auto-hide while ANY FFXI text-entry surface is open: chat bar, macro
+-- editor, search comment, /tell input. Two signals OR'd together:
+--   1. windower.ffxi.get_info().chat_open  (chat bar / /tell)
+--   2. _last_blocked_at -- last keyboard event flagged blocked=true.
+--      The macro editor doesn't set chat_open but DOES route keys
+--      through FFXI's intercept (blocked=true). 1.5 s window catches
+--      pauses between keystrokes mid-edit.
+-- settings.visible is preserved; panel reappears once both signals
+-- clear.
 local _was_input_open = false
+local _last_blocked_at = 0
+windower.register_event('keyboard', function(dik, pressed, flags, blocked)
+    if blocked then _last_blocked_at = os.clock() end
+end)
 windower.register_event('prerender', function()
     local info = windower.ffxi.get_info()
-    local input_open = info and info.chat_open == true
+    local input_open = (info and info.chat_open == true)
+                       or (os.clock() - _last_blocked_at) < 1.5
     if input_open and not _was_input_open then
         destroy_window()
         _was_input_open = true

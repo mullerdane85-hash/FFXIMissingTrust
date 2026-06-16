@@ -2,9 +2,11 @@
 
 ## 🔑 Hotkey
 
-**Default toggle: `U`**
+**Default toggle: `Alt+M`**
 
-Press `U` in-game to show or hide the window. Disabled while the chat bar or macro editor is open.
+Press `Alt+M` in-game to show or hide the window. Goes through Windower's `bind` system, so the keybind is automatically suppressed while the chat bar, search box, or macro editor is open — won't fight with typing.
+
+`M` for "Missing".
 
 Slash-command equivalents: `//ms`, `//missingspells`, `//mspells`, `//mt`, `//mtrust`.
 
@@ -30,11 +32,11 @@ To autoload it every session, add `lua load FFXIMissingSpells` to
 
 ## Window
 
-Press **U** to toggle the window in-game. The keybind is suppressed while
-chat is open so typing the letter 'u' still works normally.
+Press **Alt+M** to toggle the window in-game. The keybind is suppressed while
+chat is open so typing the letter 'm' still works normally.
 
 ```
-//ms              — toggle the window (same as the U key)
+//ms              — toggle the window (same as Alt+M)
 //ms show         — show the window
 //ms hide         — hide the window
 ```

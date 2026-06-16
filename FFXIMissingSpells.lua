@@ -108,6 +108,7 @@ local blu_info = require('libs/blu_info')
 -- BLU tab still prefers blu_info first for the Stat Bonus / Creates
 -- Job Trait fields BLU spells uniquely have.
 local spell_info = require('libs/spell_info')
+local hotkey = require('libs/hotkey')
 
 -- Helper: short tag for a spell name. Tries the curated extras first,
 -- then the CSV-derived short table, then derives a BLU family name
@@ -2086,8 +2087,8 @@ windower.register_event('addon command', function(cmd, ...)
 end)
 
 -- ---------------------------------------------------------------------------
--- Keyboard handler
---   U                 — toggle window (chat-suppressed)
+-- Keyboard handler (navigation only).
+-- Window toggle lives in libs/hotkey (Alt+M, bound on 'load').
 --   ; / '             — move selection up / down in the spell list.
 --                       (Arrow keys aren't used because FFXI reads them
 --                       at the DirectInput device level, below Windower's
@@ -2099,7 +2100,6 @@ end)
 --   PgUp / PgDn       — page-jump in the list (also safe — unbound)
 --   All gated on: window visible + chat closed.
 -- ---------------------------------------------------------------------------
-local DIK_U          = 22
 local DIK_SEMICOLON  = 39    -- 0x27 — ";" key, used as Up
 local DIK_APOSTROPHE = 40    -- 0x28 — "'" key, used as Down
 local DIK_PGUP       = 201   -- 0xC9
@@ -2148,11 +2148,10 @@ windower.register_event('keyboard', function(dik, pressed, flags, blocked)
     local chat_open = info and info.chat_open
     if chat_open then return false end
 
-    -- U toggles the window (only on press)
-    if dik == DIK_U then
-        if pressed then toggle_window() end
-        return true
-    end
+    -- Window toggle moved to Alt+M via libs/hotkey (bound on 'load').
+    -- That route already respects chat-open state, and the modifier
+    -- means a bare letter no longer fires the toggle (chat name /
+    -- search box conflicts).
 
     -- Selection nav: only when the window is visible. Semicolon / apostrophe
     -- aren't polled by FFXI for any in-game action, so consuming them here
@@ -2218,6 +2217,10 @@ windower.register_event('load', function()
         cmd_count(settings.job)
         if settings.visible and _player_in_game() then build_window() end
     end, 2)
+
+    -- Toggle hotkey: Alt+M (mnemonic for Missing). Modifier+letter avoids
+    -- the in-game macro slots (Alt/Ctrl+0..9) and bare-letter chat conflicts.
+    hotkey.bind('ms', 'toggle', 'alt', 'm')
 end)
 
 windower.register_event('login', function()
@@ -2240,5 +2243,6 @@ windower.register_event('zone change', function()
 end)
 
 windower.register_event('unload', function()
+    pcall(hotkey.unbind, 'ms')
     destroy_window()
 end)
